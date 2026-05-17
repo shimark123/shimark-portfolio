@@ -4,10 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Shimark Ahmed · Business Analyst & IT Project Manager</title>
-  <link rel="icon" type="image/png" href="favicon.png">
+<link rel="icon" type="image/png" href="favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -60,61 +59,70 @@
     border-bottom: 1px solid var(--border);
   }
 
-  .nav-logo {
-    display: flex;
-    flex-direction: column;
-    gap: 0.1rem;
-  }
-
-  .nav-logo-name {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.1rem;
-    color: var(--white);
-    font-weight: 700;
-    letter-spacing: 0.02em;
-    line-height: 1;
-  }
-
+  .nav-logo { display: flex; flex-direction: column; gap: 0.1rem; }
+  .nav-logo-name { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--white); font-weight: 700; letter-spacing: 0.02em; line-height: 1; }
   .nav-logo-name span { color: var(--gold); }
+  .nav-logo-title { font-family: 'DM Mono', monospace; font-size: 0.62rem; color: var(--muted); letter-spacing: 0.14em; text-transform: uppercase; }
 
-  .nav-logo-title {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.62rem;
-    color: var(--muted);
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-  }
-
-  .nav-links {
-    display: flex;
-    gap: 2.5rem;
-    list-style: none;
-  }
-
-  .nav-links a {
-    color: var(--muted);
-    text-decoration: none;
-    font-size: 0.82rem;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    transition: color 0.2s;
-  }
-
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.82rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; transition: color 0.2s; }
   .nav-links a:hover { color: var(--gold); }
 
-  .nav-cta {
-    background: transparent;
-    border: 1px solid var(--gold);
-    color: var(--gold) !important;
-    padding: 0.45rem 1.2rem;
+  .nav-hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 4px;
+    background: none;
+    border: none;
+  }
+  .nav-hamburger span {
+    display: block;
+    width: 22px; height: 2px;
+    background: var(--muted);
     border-radius: 2px;
-    transition: all 0.2s !important;
+    transition: all 0.3s;
   }
 
-  .nav-cta:hover {
-    background: var(--gold) !important;
-    color: var(--black) !important;
+  .nav-cta { background: transparent; border: 1px solid var(--gold); color: var(--gold) !important; padding: 0.45rem 1.2rem; border-radius: 2px; transition: all 0.2s !important; }
+  .nav-cta:hover { background: var(--gold) !important; color: var(--black) !important; }
+
+  /* Mobile nav drawer */
+  .nav-mobile-menu {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(10,10,10,0.98);
+    z-index: 99;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+  }
+  .nav-mobile-menu.open { display: flex; }
+  .nav-mobile-menu a {
+    color: var(--white);
+    text-decoration: none;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    transition: color 0.2s;
+  }
+  .nav-mobile-menu a:hover { color: var(--gold); }
+  .nav-mobile-close {
+    position: absolute;
+    top: 1.5rem; right: 1.5rem;
+    background: none;
+    border: 1px solid var(--border-light);
+    color: var(--muted);
+    width: 36px; height: 36px;
+    border-radius: 4px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   /* ─── HERO ─── */
@@ -128,11 +136,8 @@
   }
 
   .hero-grid-bg {
-    position: absolute;
-    inset: 0;
-    background-image:
-      linear-gradient(rgba(201,168,76,0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(201,168,76,0.03) 1px, transparent 1px);
+    position: absolute; inset: 0;
+    background-image: linear-gradient(rgba(201,168,76,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(201,168,76,0.03) 1px, transparent 1px);
     background-size: 60px 60px;
   }
 
@@ -145,473 +150,102 @@
     transform: translate(-50%, -50%);
   }
 
-  .hero-content {
-    position: relative;
-    z-index: 2;
-    max-width: 900px;
-  }
+  .hero-content { position: relative; z-index: 2; max-width: 900px; }
 
   .hero-eyebrow {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.75rem;
-    font-family: 'DM Mono', monospace;
-    font-size: 0.75rem;
-    color: var(--gold);
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    margin-bottom: 2rem;
-    opacity: 0;
-    animation: fadeUp 0.8s 0.2s ease forwards;
+    display: inline-flex; align-items: center; gap: 0.75rem;
+    font-family: 'DM Mono', monospace; font-size: 0.75rem; color: var(--gold);
+    letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 2rem;
+    opacity: 0; animation: fadeUp 0.8s 0.2s ease forwards;
   }
-
-  .hero-eyebrow::before {
-    content: '';
-    width: 40px; height: 1px;
-    background: var(--gold);
-  }
+  .hero-eyebrow::before { content: ''; width: 40px; height: 1px; background: var(--gold); }
 
   h1.hero-name {
     font-family: 'Playfair Display', serif;
     font-size: clamp(3.5rem, 8vw, 7rem);
-    font-weight: 900;
-    line-height: 0.95;
-    color: var(--white);
+    font-weight: 900; line-height: 0.95; color: var(--white);
     margin-bottom: 1.5rem;
-    opacity: 0;
-    animation: fadeUp 0.8s 0.4s ease forwards;
+    opacity: 0; animation: fadeUp 0.8s 0.4s ease forwards;
   }
+  h1.hero-name .line2 { color: transparent; -webkit-text-stroke: 1px rgba(201,168,76,0.5); }
 
-  h1.hero-name .line2 {
-    color: transparent;
-    -webkit-text-stroke: 1px rgba(201,168,76,0.5);
-  }
+  .hero-roles { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2rem; opacity: 0; animation: fadeUp 0.8s 0.6s ease forwards; }
+  .role-pill { border: 1px solid var(--border-light); color: var(--muted); padding: 0.4rem 1rem; border-radius: 100px; font-size: 0.8rem; font-weight: 500; letter-spacing: 0.05em; }
+  .role-pill.active { border-color: var(--gold); color: var(--gold); background: var(--gold-dim); }
 
-  .hero-roles {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-    margin-bottom: 2rem;
-    opacity: 0;
-    animation: fadeUp 0.8s 0.6s ease forwards;
-  }
+  .hero-desc { max-width: 560px; color: var(--muted); font-size: 1rem; line-height: 1.8; margin-bottom: 2.5rem; opacity: 0; animation: fadeUp 0.8s 0.8s ease forwards; }
 
-  .role-pill {
-    border: 1px solid var(--border-light);
-    color: var(--muted);
-    padding: 0.4rem 1rem;
-    border-radius: 100px;
-    font-size: 0.8rem;
-    font-weight: 500;
-    letter-spacing: 0.05em;
-  }
-
-  .role-pill.active {
-    border-color: var(--gold);
-    color: var(--gold);
-    background: var(--gold-dim);
-  }
-
-  .hero-desc {
-    max-width: 560px;
-    color: var(--muted);
-    font-size: 1rem;
-    line-height: 1.8;
-    margin-bottom: 2.5rem;
-    opacity: 0;
-    animation: fadeUp 0.8s 0.8s ease forwards;
-  }
-
-  .hero-actions {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-    opacity: 0;
-    animation: fadeUp 0.8s 1s ease forwards;
-  }
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; opacity: 0; animation: fadeUp 0.8s 1s ease forwards; }
 
   .btn-primary {
-    background: var(--gold);
-    color: var(--black);
-    padding: 0.85rem 2rem;
-    border: none;
-    border-radius: 2px;
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 600;
-    font-size: 0.85rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    cursor: pointer;
-    text-decoration: none;
-    display: inline-block;
-    transition: all 0.2s;
+    background: var(--gold); color: var(--black); padding: 0.85rem 2rem;
+    border: none; border-radius: 2px; font-family: 'DM Sans', sans-serif;
+    font-weight: 600; font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase;
+    cursor: pointer; text-decoration: none; display: inline-block; transition: all 0.2s;
   }
-
-  .btn-primary:hover {
-    background: var(--gold-light);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 30px rgba(201,168,76,0.25);
-  }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(201,168,76,0.25); }
 
   .btn-outline {
-    background: transparent;
-    color: var(--white);
-    padding: 0.85rem 2rem;
-    border: 1px solid var(--border-light);
-    border-radius: 2px;
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 500;
-    font-size: 0.85rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    cursor: pointer;
-    text-decoration: none;
-    display: inline-block;
-    transition: all 0.2s;
-    position: relative;
+    background: transparent; color: var(--white); padding: 0.85rem 2rem;
+    border: 1px solid var(--border-light); border-radius: 2px; font-family: 'DM Sans', sans-serif;
+    font-weight: 500; font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase;
+    cursor: pointer; text-decoration: none; display: inline-block; transition: all 0.2s;
   }
-
-  .btn-outline:hover {
-    border-color: var(--gold);
-    color: var(--gold);
-    transform: translateY(-2px);
-  }
-
-  /* CV Dropdown */
-  /* CV Dropdown */
-.cv-dropdown {
-  position: relative;
-  display: inline-block;
-}
-
-.cv-dropdown-menu {
-  position: absolute;
-  top: calc(100% + 12px);
-  left: 0;
-
-  background: var(--deep);
-  border: 1px solid var(--border-light);
-  border-radius: 8px;
-
-  min-width: 260px;
-  overflow: hidden;
-
-  z-index: 999;
-
-  box-shadow: 0 15px 40px rgba(0,0,0,0.45);
-
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(10px);
-
-  transition:
-    opacity 0.2s ease,
-    transform 0.2s ease,
-    visibility 0.2s;
-}
-
-/* invisible hover bridge */
-.cv-dropdown::after {
-  content: "";
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 100%;
-  height: 18px;
-}
-
-/* show dropdown */
-.cv-dropdown:hover .cv-dropdown-menu,
-.cv-dropdown-menu:hover {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-}
-
-.cv-dropdown-item {
-  display: flex;
-  align-items: center;
-  gap: 0.9rem;
-
-  padding: 1rem 1.1rem;
-
-  text-decoration: none;
-  color: var(--text);
-
-  font-size: 0.85rem;
-  font-weight: 500;
-
-  transition: all 0.2s ease;
-
-  border-bottom: 1px solid var(--border);
-}
-
-.cv-dropdown-item:last-child {
-  border-bottom: none;
-}
-
-.cv-dropdown-item:hover {
-  background: var(--gold-dim);
-  color: var(--gold);
-}
-
-.cv-dropdown-item-icon {
-  width: 34px;
-  height: 34px;
-
-  background: var(--gold-dim);
-  border-radius: 6px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  font-size: 0.95rem;
-
-  flex-shrink: 0;
-}
-
-.cv-dropdown-item-label {
-  display: flex;
-  flex-direction: column;
-  gap: 0.15rem;
-}
-
-.cv-dropdown-item-label span {
-  font-family: 'DM Mono', monospace;
-  font-size: 0.62rem;
-  color: var(--gold);
-
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
 
   .hero-stats {
-    position: absolute;
-    right: 4rem;
-    top: 50%;
-    transform: translateY(-50%);
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    opacity: 0;
-    animation: fadeIn 1s 1.2s ease forwards;
+    position: absolute; right: 4rem; top: 50%; transform: translateY(-50%);
+    display: flex; flex-direction: column; gap: 2rem;
+    opacity: 0; animation: fadeIn 1s 1.2s ease forwards;
   }
-
-  .stat-item {
-    text-align: right;
-    border-right: 2px solid var(--border-light);
-    padding-right: 1.5rem;
-  }
-
+  .stat-item { text-align: right; border-right: 2px solid var(--border-light); padding-right: 1.5rem; }
   .stat-item.gold { border-color: var(--gold); }
-
-  .stat-num {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: var(--white);
-    line-height: 1;
-  }
-
+  .stat-num { font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 700; color: var(--white); line-height: 1; }
   .stat-num span { color: var(--gold); }
-
-  .stat-label {
-    font-size: 0.72rem;
-    color: var(--muted);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    margin-top: 0.25rem;
-  }
+  .stat-label { font-size: 0.72rem; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 0.25rem; }
 
   /* ─── SECTION COMMON ─── */
-  section {
-    padding: 6rem 4rem;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
+  section { padding: 6rem 4rem; max-width: 1200px; margin: 0 auto; }
 
   .section-label {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    font-family: 'DM Mono', monospace;
-    font-size: 0.7rem;
-    color: var(--gold);
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    margin-bottom: 1rem;
+    display: flex; align-items: center; gap: 1rem;
+    font-family: 'DM Mono', monospace; font-size: 0.7rem; color: var(--gold);
+    letter-spacing: 0.25em; text-transform: uppercase; margin-bottom: 1rem;
   }
+  .section-label::after { content: ''; flex: 1; max-width: 60px; height: 1px; background: var(--gold); }
+  .section-title { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 700; color: var(--white); line-height: 1.1; margin-bottom: 1rem; }
+  .section-sub { color: var(--muted); max-width: 500px; margin-bottom: 4rem; }
 
-  .section-label::after {
-    content: '';
-    flex: 1;
-    max-width: 60px;
-    height: 1px;
-    background: var(--gold);
-  }
-
-  .section-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(2rem, 4vw, 3.5rem);
-    font-weight: 700;
-    color: var(--white);
-    line-height: 1.1;
-    margin-bottom: 1rem;
-  }
-
-  .section-sub {
-    color: var(--muted);
-    max-width: 500px;
-    margin-bottom: 4rem;
-  }
-
-  .divider {
-    width: 100%;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--border-light), transparent);
-    margin: 0 4rem;
-    max-width: calc(100% - 8rem);
-  }
+  .divider { width: 100%; height: 1px; background: linear-gradient(90deg, transparent, var(--border-light), transparent); margin: 0 4rem; max-width: calc(100% - 8rem); }
 
   /* ─── ABOUT ─── */
-  .about-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    align-items: start;
-  }
-
-  .about-text p {
-    color: var(--muted);
-    margin-bottom: 1.25rem;
-    line-height: 1.9;
-  }
-
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+  .about-text p { color: var(--muted); margin-bottom: 1.25rem; line-height: 1.9; }
   .about-text strong { color: var(--white); }
-
-  .about-sidebar {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-
-  .info-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    padding: 1.5rem;
-    transition: border-color 0.2s;
-  }
-
+  .about-sidebar { display: flex; flex-direction: column; gap: 1.5rem; }
+  .info-card { background: var(--card); border: 1px solid var(--border); border-radius: 4px; padding: 1.5rem; transition: border-color 0.2s; }
   .info-card:hover { border-color: var(--border-light); }
-
-  .info-card-label {
-    font-size: 0.68rem;
-    color: var(--gold);
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    font-family: 'DM Mono', monospace;
-    margin-bottom: 0.5rem;
-  }
-
-  .info-card-value {
-    color: var(--white);
-    font-weight: 500;
-  }
+  .info-card-label { font-size: 0.68rem; color: var(--gold); letter-spacing: 0.2em; text-transform: uppercase; font-family: 'DM Mono', monospace; margin-bottom: 0.5rem; }
+  .info-card-value { color: var(--white); font-weight: 500; }
 
   /* ─── EXPERIENCE TIMELINE ─── */
-  .timeline {
-    position: relative;
-    padding-left: 2rem;
-  }
+  .timeline { position: relative; padding-left: 2rem; }
+  .timeline::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 1px; background: linear-gradient(180deg, var(--gold) 0%, var(--border) 60%, transparent 100%); }
+  .timeline-item { position: relative; padding: 0 0 3.5rem 2.5rem; }
+  .timeline-dot { position: absolute; left: -2rem; top: 0.35rem; width: 10px; height: 10px; border-radius: 50%; background: var(--black); border: 2px solid var(--gold); transform: translateX(-4px); }
+  .timeline-dot.active { background: var(--gold); box-shadow: 0 0 12px rgba(201,168,76,0.5); }
+  .timeline-date { font-family: 'DM Mono', monospace; font-size: 0.72rem; color: var(--gold); letter-spacing: 0.1em; margin-bottom: 0.5rem; }
+  .timeline-role { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--white); font-weight: 700; margin-bottom: 0.25rem; }
+  .timeline-company { color: var(--muted); font-size: 0.9rem; margin-bottom: 1rem; }
+  .timeline-company span { color: var(--text); font-weight: 500; }
+  .timeline-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+  .timeline-bullets li { position: relative; padding-left: 1.25rem; color: var(--muted); font-size: 0.9rem; line-height: 1.6; }
+  .timeline-bullets li::before { content: '▹'; position: absolute; left: 0; color: var(--gold); }
 
-  .timeline::before {
-    content: '';
-    position: absolute;
-    left: 0; top: 0; bottom: 0;
-    width: 1px;
-    background: linear-gradient(180deg, var(--gold) 0%, var(--border) 60%, transparent 100%);
-  }
+  /* ─── PROJECTS ─── */
+  #projects { padding: 6rem 4rem; max-width: 1200px; margin: 0 auto; }
 
-  .timeline-item {
-    position: relative;
-    padding: 0 0 3.5rem 2.5rem;
-  }
-
-  .timeline-dot {
-    position: absolute;
-    left: -2rem;
-    top: 0.35rem;
-    width: 10px; height: 10px;
-    border-radius: 50%;
-    background: var(--black);
-    border: 2px solid var(--gold);
-    transform: translateX(-4px);
-  }
-
-  .timeline-dot.active {
-    background: var(--gold);
-    box-shadow: 0 0 12px rgba(201,168,76,0.5);
-  }
-
-  .timeline-date {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.72rem;
-    color: var(--gold);
-    letter-spacing: 0.1em;
-    margin-bottom: 0.5rem;
-  }
-
-  .timeline-role {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.4rem;
-    color: var(--white);
-    font-weight: 700;
-    margin-bottom: 0.25rem;
-  }
-
-  .timeline-company {
-    color: var(--muted);
-    font-size: 0.9rem;
-    margin-bottom: 1rem;
-  }
-
-  .timeline-company span {
-    color: var(--text);
-    font-weight: 500;
-  }
-
-  .timeline-bullets {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  .timeline-bullets li {
-    position: relative;
-    padding-left: 1.25rem;
-    color: var(--muted);
-    font-size: 0.9rem;
-    line-height: 1.6;
-  }
-
-  .timeline-bullets li::before {
-    content: '▹';
-    position: absolute;
-    left: 0;
-    color: var(--gold);
-  }
-
-  /* ─── PROJECTS — COMPLETELY REBUILT ─── */
-  #projects {
-    padding: 6rem 4rem;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-
-  /* Featured card — full width, horizontal split */
+  /* Featured card */
   .project-featured {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -623,941 +257,335 @@
     cursor: pointer;
     transition: border-color 0.3s, box-shadow 0.3s;
   }
+  .project-featured:hover { border-color: var(--gold); box-shadow: 0 20px 60px rgba(0,0,0,0.5); }
+  .project-featured-left { padding: 2.5rem; border-right: 1px solid var(--border); display: flex; flex-direction: column; gap: 1.5rem; min-width: 0; }
+  .project-featured-right { padding: 2.5rem; display: flex; flex-direction: column; gap: 1.5rem; background: linear-gradient(135deg, rgba(201,168,76,0.03) 0%, transparent 60%); min-width: 0; }
 
-  .project-featured:hover {
-    border-color: var(--gold);
-    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-  }
-
-  .project-featured-left {
-    padding: 2.5rem;
-    border-right: 1px solid var(--border);
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-
-  .project-featured-right {
-    padding: 2.5rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    background: linear-gradient(135deg, rgba(201,168,76,0.03) 0%, transparent 60%);
-  }
-
-  /* 2-col row for the 3 remaining cards */
-  .projects-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-    margin-bottom: 2rem;
-  }
+  /* 2-col row */
+  .projects-row { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem; }
 
   /* Standard project card */
   .project-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    overflow: hidden;
-    cursor: pointer;
-    transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
-    display: flex;
-    flex-direction: column;
+    background: var(--card); border: 1px solid var(--border); border-radius: 6px;
+    overflow: hidden; cursor: pointer; transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+    display: flex; flex-direction: column;
   }
+  .project-card:hover { border-color: var(--gold); box-shadow: 0 20px 60px rgba(0,0,0,0.5); transform: translateY(-4px); }
 
-  .project-card:hover {
-    border-color: var(--gold);
-    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-    transform: translateY(-4px);
-  }
-
-  /* SwingRight full-width card */
+  /* SwingRight full-width card — FIXED LAYOUT */
   .project-card-full {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    overflow: hidden;
-    cursor: pointer;
-    transition: border-color 0.3s, box-shadow 0.3s;
+    background: var(--card); border: 1px solid var(--border); border-radius: 6px;
+    overflow: hidden; cursor: pointer; transition: border-color 0.3s, box-shadow 0.3s;
     display: grid;
     grid-template-columns: 1fr 1fr;
   }
+  .project-card-full:hover { border-color: var(--gold); box-shadow: 0 20px 60px rgba(0,0,0,0.5); }
+  .project-card-full-left { padding: 2.5rem; border-right: 1px solid var(--border); display: flex; flex-direction: column; gap: 1.5rem; }
+  .project-card-full-right { padding: 2.5rem; display: flex; flex-direction: column; gap: 1.5rem; background: linear-gradient(135deg, rgba(201,168,76,0.02) 0%, transparent 60%); }
 
-  .project-card-full:hover {
-    border-color: var(--gold);
-    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-  }
+  /* Shared card internals */
+  .project-tag { display: inline-block; font-family: 'DM Mono', monospace; font-size: 0.63rem; color: var(--gold); letter-spacing: 0.15em; text-transform: uppercase; border: 1px solid rgba(201,168,76,0.3); border-radius: 100px; padding: 0.2rem 0.75rem; background: var(--gold-dim); width: fit-content; }
+  .project-name { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--white); font-weight: 700; line-height: 1.2; }
+  .project-name-sm { font-family: 'Playfair Display', serif; font-size: 1.25rem; color: var(--white); font-weight: 700; line-height: 1.2; }
+  .project-sub { color: var(--muted); font-size: 0.82rem; margin-top: 0.2rem; }
+  .project-desc { color: var(--muted); font-size: 0.88rem; line-height: 1.75; flex: 1; }
 
-  .project-card-full-left {
-    padding: 2.5rem;
-    border-right: 1px solid var(--border);
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-  }
+  .artifact-list { display: flex; flex-direction: column; gap: 0.5rem; }
+  .artifact-item { display: flex; align-items: center; gap: 0.75rem; background: rgba(201,168,76,0.04); border: 1px solid var(--border); border-radius: 3px; padding: 0.55rem 0.9rem; }
+  .artifact-icon { width: 26px; height: 26px; background: var(--gold-dim); border-radius: 3px; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; flex-shrink: 0; }
+  .artifact-name { font-size: 0.8rem; color: var(--text); font-weight: 500; flex: 1; }
+  .artifact-type { font-family: 'DM Mono', monospace; font-size: 0.62rem; color: var(--gold); white-space: nowrap; }
 
-  .project-card-full-right {
-    padding: 2.5rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    background: linear-gradient(135deg, rgba(201,168,76,0.02) 0%, transparent 60%);
-  }
-
-  /* Shared project card internals */
-  .project-tag {
-    display: inline-block;
-    font-family: 'DM Mono', monospace;
-    font-size: 0.63rem;
-    color: var(--gold);
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    border: 1px solid rgba(201,168,76,0.3);
-    border-radius: 100px;
-    padding: 0.2rem 0.75rem;
-    background: var(--gold-dim);
-    width: fit-content;
-  }
-
-  .project-name {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.5rem;
-    color: var(--white);
-    font-weight: 700;
-    line-height: 1.2;
-  }
-
-  .project-name-sm {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.25rem;
-    color: var(--white);
-    font-weight: 700;
-    line-height: 1.2;
-  }
-
-  .project-sub {
-    color: var(--muted);
-    font-size: 0.82rem;
-    margin-top: 0.2rem;
-  }
-
-  .project-desc {
-    color: var(--muted);
-    font-size: 0.88rem;
-    line-height: 1.75;
-    flex: 1;
-  }
-
-  .artifact-list {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  .artifact-item {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    background: rgba(201,168,76,0.04);
-    border: 1px solid var(--border);
-    border-radius: 3px;
-    padding: 0.55rem 0.9rem;
-  }
-
-  .artifact-icon {
-    width: 26px; height: 26px;
-    background: var(--gold-dim);
-    border-radius: 3px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.75rem;
-    flex-shrink: 0;
-  }
-
-  .artifact-name {
-    font-size: 0.8rem;
-    color: var(--text);
-    font-weight: 500;
-    flex: 1;
-  }
-
-  .artifact-type {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.62rem;
-    color: var(--gold);
-    white-space: nowrap;
-  }
-
-  .tech-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem;
-  }
-
-  .tech-tag {
-    font-size: 0.7rem;
-    color: var(--muted);
-    border: 1px solid var(--border);
-    border-radius: 3px;
-    padding: 0.2rem 0.55rem;
-  }
+  .tech-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .tech-tag { font-size: 0.7rem; color: var(--muted); border: 1px solid var(--border); border-radius: 3px; padding: 0.2rem 0.55rem; }
 
   /* Diagram areas */
-  .diagram-area {
-    background: var(--deep);
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    padding: 1.25rem;
-    overflow-x: auto;
-    flex: 1;
-  }
+  .diagram-area { background: var(--deep); border: 1px solid var(--border); border-radius: 4px; padding: 1.25rem; flex: 1; overflow: visible; }
+  .diagram-title { font-family: 'DM Mono', monospace; font-size: 0.65rem; color: var(--gold); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 1.25rem; }
 
-  .diagram-title {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.65rem;
-    color: var(--gold);
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    margin-bottom: 1.25rem;
-  }
-
-  .outcome-box {
-    background: var(--gold-dim);
-    border: 1px solid rgba(201,168,76,0.3);
-    border-radius: 3px;
-    padding: 1rem;
-  }
-
-  .outcome-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.62rem;
-    color: var(--gold);
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    margin-bottom: 0.35rem;
-  }
-
-  .outcome-text {
-    font-size: 0.82rem;
-    color: var(--text);
-    line-height: 1.6;
-  }
+  .outcome-box { background: var(--gold-dim); border: 1px solid rgba(201,168,76,0.3); border-radius: 3px; padding: 1rem; }
+  .outcome-label { font-family: 'DM Mono', monospace; font-size: 0.62rem; color: var(--gold); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.35rem; }
+  .outcome-text { font-size: 0.82rem; color: var(--text); line-height: 1.6; }
 
   /* BPMN */
-  .bpmn-flow {
-    display: flex;
-    align-items: center;
-    overflow-x: auto;
-    padding-bottom: 0.5rem;
-    gap: 0;
-    min-width: 500px;
-  }
+  .bpmn-scroll { overflow-x: auto; overflow-y: visible; padding-bottom: 0.75rem; -webkit-overflow-scrolling: touch; }
+  .bpmn-flow { display: flex; align-items: center; gap: 0; min-width: 580px; }
+  .bpmn-node { display: flex; flex-direction: column; align-items: center; gap: 0.4rem; flex-shrink: 0; }
+  .bpmn-shape { display: flex; align-items: center; justify-content: center; font-size: 0.6rem; font-weight: 600; text-align: center; padding: 0.3rem; line-height: 1.2; }
+  .bpmn-circle { width: 38px; height: 38px; border-radius: 50%; background: var(--gold); color: var(--black); }
+  .bpmn-circle.end { background: transparent; border: 3px solid var(--gold); color: var(--gold); }
+  .bpmn-rect { width: 72px; height: 44px; border-radius: 3px; background: var(--card); border: 1.5px solid var(--border-light); color: var(--text); font-size: 0.57rem; padding: 0.25rem; }
+  .bpmn-rect.highlight { border-color: var(--gold); background: var(--gold-dim); color: var(--gold-light); }
+  .bpmn-diamond { width: 46px; height: 46px; background: var(--card); border: 1.5px solid var(--gold); transform: rotate(45deg); flex-shrink: 0; }
+  .bpmn-diamond-wrap { width: 46px; height: 46px; display: flex; align-items: center; justify-content: center; position: relative; flex-shrink: 0; }
+  .bpmn-diamond-label { position: absolute; font-size: 0.52rem; color: var(--gold); text-align: center; width: 36px; line-height: 1.2; z-index: 1; }
+  .bpmn-arrow { width: 20px; height: 1px; background: var(--muted); position: relative; flex-shrink: 0; }
+  .bpmn-arrow::after { content: '▶'; position: absolute; right: -5px; top: 50%; transform: translateY(-50%); font-size: 0.45rem; color: var(--muted); }
+  .bpmn-label { font-size: 0.55rem; color: var(--muted); text-align: center; max-width: 72px; line-height: 1.2; }
 
-  .bpmn-node {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.4rem;
-    flex-shrink: 0;
-  }
-
-  .bpmn-shape {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.6rem;
-    font-weight: 600;
-    text-align: center;
-    padding: 0.3rem;
-    line-height: 1.2;
-  }
-
-  .bpmn-circle {
-    width: 38px; height: 38px;
-    border-radius: 50%;
-    background: var(--gold);
-    color: var(--black);
-  }
-
-  .bpmn-circle.end {
-    background: transparent;
-    border: 3px solid var(--gold);
-    color: var(--gold);
-  }
-
-  .bpmn-rect {
-    width: 72px; height: 44px;
-    border-radius: 3px;
-    background: var(--card);
-    border: 1.5px solid var(--border-light);
-    color: var(--text);
-    font-size: 0.57rem;
-    padding: 0.25rem;
-  }
-
-  .bpmn-rect.highlight {
-    border-color: var(--gold);
-    background: var(--gold-dim);
-    color: var(--gold-light);
-  }
-
-  .bpmn-diamond {
-    width: 46px; height: 46px;
-    background: var(--card);
-    border: 1.5px solid var(--gold);
-    transform: rotate(45deg);
-    flex-shrink: 0;
-  }
-
-  .bpmn-diamond-wrap {
-    width: 46px; height: 46px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    flex-shrink: 0;
-  }
-
-  .bpmn-diamond-label {
-    position: absolute;
-    font-size: 0.52rem;
-    color: var(--gold);
-    text-align: center;
-    width: 36px;
-    line-height: 1.2;
-    z-index: 1;
-  }
-
-  .bpmn-arrow {
-    width: 20px; height: 1px;
-    background: var(--muted);
-    position: relative;
-    flex-shrink: 0;
-  }
-
-  .bpmn-arrow::after {
-    content: '▶';
-    position: absolute;
-    right: -5px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 0.45rem;
-    color: var(--muted);
-  }
-
-  .bpmn-label {
-    font-size: 0.55rem;
-    color: var(--muted);
-    text-align: center;
-    max-width: 72px;
-    line-height: 1.2;
-  }
-
-  /* Flow diagrams */
-  .flow-container {
+  /* ─── ML PIPELINE — FIXED GRID LAYOUT ─── */
+  .ml-pipeline {
     display: flex;
     flex-direction: column;
-    align-items: stretch;
-    gap: 0;
-  }
-
-  .flow-row {
-    display: flex;
-    align-items: center;
     gap: 0;
     width: 100%;
-    justify-content: center;
   }
 
-  .flow-box {
+  .ml-row {
+    display: grid;
+    grid-template-columns: 1fr 20px 1fr 20px 1fr;
+    align-items: center;
+    gap: 0;
+  }
+
+  .ml-connector-row {
+    display: grid;
+    grid-template-columns: 1fr 20px 1fr 20px 1fr;
+    align-items: center;
+    height: 22px;
+  }
+
+  .ml-node {
     background: var(--card);
     border: 1.5px solid var(--border-light);
     border-radius: 4px;
-    padding: 0.5rem 0.75rem;
-    font-size: 0.7rem;
+    padding: 0.55rem 0.5rem;
+    font-size: 0.68rem;
     color: var(--text);
     text-align: center;
-    min-width: 90px;
     line-height: 1.3;
-    flex-shrink: 0;
-  }
-
-  .flow-box.gold-box {
-    border-color: var(--gold);
-    background: var(--gold-dim);
-    color: var(--gold-light);
-  }
-
-  .flow-box.start-box {
-    border-radius: 100px;
-    background: var(--gold);
-    color: var(--black);
-    font-weight: 600;
-    min-width: 80px;
-  }
-
-  .flow-box.end-box {
-    border-radius: 100px;
-    background: transparent;
-    border-color: var(--gold);
-    color: var(--gold);
-    min-width: 70px;
-  }
-
-  .flow-arrow-h {
-    width: 24px; height: 1px;
-    background: var(--border-light);
-    position: relative;
-    flex-shrink: 0;
-  }
-
-  .flow-arrow-h::after {
-    content: '▶';
-    position: absolute;
-    right: -5px; top: 50%;
-    transform: translateY(-50%);
-    font-size: 0.4rem;
-    color: var(--muted);
-  }
-
-  .flow-arrow-v {
-    height: 18px; width: 1px;
-    background: var(--border-light);
-    position: relative;
-    margin: 0 auto;
-  }
-
-  .flow-arrow-v::after {
-    content: '▼';
-    position: absolute;
-    bottom: -5px; left: 50%;
-    transform: translateX(-50%);
-    font-size: 0.4rem;
-    color: var(--muted);
-  }
-
-  /* Card header strip */
-  .card-header-strip {
-    padding: 2rem 2rem 0;
+    min-height: 44px;
     display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
+    align-items: center;
+    justify-content: center;
   }
 
-  .card-body-pad {
-    padding: 1.5rem 2rem 2rem;
+  .ml-node.gold { border-color: var(--gold); background: var(--gold-dim); color: var(--gold-light); font-weight: 600; }
+  .ml-node.start { background: var(--gold); color: var(--black); border-color: var(--gold); font-weight: 700; border-radius: 100px; }
+  .ml-node.end { background: transparent; border-color: var(--gold); color: var(--gold); font-weight: 600; border-radius: 100px; }
+
+  .ml-h-arrow {
     display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 100%;
+    position: relative;
+    color: var(--muted);
+    font-size: 0.55rem;
+  }
+
+  .ml-v-down {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--muted);
+    font-size: 0.55rem;
     flex-direction: column;
-    gap: 1.25rem;
+    height: 22px;
+  }
+
+  .ml-v-line {
+    width: 1px;
+    background: var(--border-light);
     flex: 1;
   }
 
+  .ml-empty { /* spacer */ }
+
+  /* Card panels */
+  .card-header-strip { padding: 2rem 2rem 0; display: flex; flex-direction: column; gap: 0.5rem; }
+  .card-body-pad { padding: 1.5rem 2rem 2rem; display: flex; flex-direction: column; gap: 1.25rem; flex: 1; }
+
   /* ─── SKILLS ─── */
-  .skills-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-  }
-
-  .skill-category {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    padding: 1.75rem;
-    transition: border-color 0.2s;
-  }
-
+  .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .skill-category { background: var(--card); border: 1px solid var(--border); border-radius: 4px; padding: 1.75rem; transition: border-color 0.2s; }
   .skill-category:hover { border-color: var(--border-light); }
-
-  .skill-cat-icon {
-    width: 36px; height: 36px;
-    background: var(--gold-dim);
-    border-radius: 4px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1rem;
-    margin-bottom: 1rem;
-  }
-
-  .skill-cat-name {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.05rem;
-    color: var(--white);
-    margin-bottom: 1rem;
-  }
-
+  .skill-cat-icon { width: 36px; height: 36px; background: var(--gold-dim); border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 1rem; margin-bottom: 1rem; }
+  .skill-cat-name { font-family: 'Playfair Display', serif; font-size: 1.05rem; color: var(--white); margin-bottom: 1rem; }
   .skill-bars { display: flex; flex-direction: column; gap: 0.75rem; }
-
   .skill-bar-item { display: flex; flex-direction: column; gap: 0.3rem; }
+  .skill-bar-top { display: flex; justify-content: space-between; font-size: 0.78rem; color: var(--text); }
+  .skill-bar-pct { color: var(--gold); font-family: 'DM Mono', monospace; font-size: 0.7rem; }
+  .skill-bar-track { height: 3px; background: var(--border); border-radius: 100px; overflow: hidden; }
+  .skill-bar-fill { height: 100%; background: linear-gradient(90deg, var(--gold) 0%, var(--gold-light) 100%); border-radius: 100px; transition: width 1.5s ease; }
 
-  .skill-bar-top {
-    display: flex;
-    justify-content: space-between;
-    font-size: 0.78rem;
-    color: var(--text);
-  }
-
-  .skill-bar-pct {
-    color: var(--gold);
-    font-family: 'DM Mono', monospace;
-    font-size: 0.7rem;
-  }
-
-  .skill-bar-track {
-    height: 3px;
-    background: var(--border);
-    border-radius: 100px;
-    overflow: hidden;
-  }
-
-  .skill-bar-fill {
-    height: 100%;
-    background: linear-gradient(90deg, var(--gold) 0%, var(--gold-light) 100%);
-    border-radius: 100px;
-    transition: width 1.5s ease;
-  }
-
-  /* Tools */
-  .tools-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1rem;
-    margin-top: 2rem;
-  }
-
-  .tool-chip {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 3px;
-    padding: 0.75rem 1rem;
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    font-size: 0.82rem;
-    color: var(--text);
-    transition: all 0.2s;
-  }
-
+  .tools-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-top: 2rem; }
+  .tool-chip { background: var(--card); border: 1px solid var(--border); border-radius: 3px; padding: 0.75rem 1rem; display: flex; align-items: center; gap: 0.6rem; font-size: 0.82rem; color: var(--text); transition: all 0.2s; }
   .tool-chip:hover { border-color: var(--border-light); color: var(--white); }
-
-  .tool-chip-dot {
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: var(--gold);
-    flex-shrink: 0;
-  }
+  .tool-chip-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
 
   /* ─── CERTS ─── */
-  .certs-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-  }
-
-  .cert-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    padding: 2rem;
-    transition: all 0.3s;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .cert-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, var(--gold), transparent);
-  }
-
+  .certs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .cert-card { background: var(--card); border: 1px solid var(--border); border-radius: 4px; padding: 2rem; transition: all 0.3s; position: relative; overflow: hidden; }
+  .cert-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--gold), transparent); }
   .cert-card:hover { border-color: var(--border-light); transform: translateY(-3px); }
-
-  .cert-badge {
-    width: 48px; height: 48px;
-    border-radius: 8px;
-    background: var(--gold-dim);
-    border: 1px solid rgba(201,168,76,0.3);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.4rem;
-    margin-bottom: 1rem;
-  }
-
-  .cert-issuer {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.65rem;
-    color: var(--gold);
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    margin-bottom: 0.5rem;
-  }
-
-  .cert-name {
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--white);
-    line-height: 1.3;
-    margin-bottom: 0.5rem;
-  }
-
+  .cert-badge { width: 48px; height: 48px; border-radius: 8px; background: var(--gold-dim); border: 1px solid rgba(201,168,76,0.3); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; margin-bottom: 1rem; }
+  .cert-issuer { font-family: 'DM Mono', monospace; font-size: 0.65rem; color: var(--gold); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.5rem; }
+  .cert-name { font-size: 1rem; font-weight: 600; color: var(--white); line-height: 1.3; margin-bottom: 0.5rem; }
   .cert-desc { font-size: 0.78rem; color: var(--muted); line-height: 1.5; }
 
   /* ─── CONTACT ─── */
-  .contact-wrapper {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    align-items: start;
-  }
-
+  .contact-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
   .contact-info { display: flex; flex-direction: column; gap: 1.5rem; }
-
-  .contact-item {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding: 1.25rem;
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    text-decoration: none;
-    transition: all 0.2s;
-  }
-
+  .contact-item { display: flex; align-items: center; gap: 1rem; padding: 1.25rem; background: var(--card); border: 1px solid var(--border); border-radius: 4px; text-decoration: none; transition: all 0.2s; }
   .contact-item:hover { border-color: var(--gold); transform: translateX(4px); }
-
-  .contact-icon {
-    width: 40px; height: 40px;
-    background: var(--gold-dim);
-    border-radius: 4px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1rem;
-    flex-shrink: 0;
-  }
-
-  .contact-label {
-    font-size: 0.7rem;
-    color: var(--gold);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    font-family: 'DM Mono', monospace;
-    margin-bottom: 0.2rem;
-  }
-
+  .contact-icon { width: 40px; height: 40px; background: var(--gold-dim); border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; }
+  .contact-label { font-size: 0.7rem; color: var(--gold); letter-spacing: 0.1em; text-transform: uppercase; font-family: 'DM Mono', monospace; margin-bottom: 0.2rem; }
   .contact-value { color: var(--text); font-size: 0.9rem; }
 
-  /* CV download buttons in contact */
-  .cv-contact-btns {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.75rem;
-  }
-
-  .cv-btn {
-    background: var(--card);
-    border: 1px solid var(--gold);
-    color: var(--gold);
-    border-radius: 3px;
-    padding: 0.85rem 1rem;
-    text-align: center;
-    text-decoration: none;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.8rem;
-    font-weight: 600;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: all 0.2s;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.3rem;
-  }
-
-  .cv-btn:hover {
-    background: var(--gold);
-    color: var(--black);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(201,168,76,0.2);
-  }
-
-  .cv-btn-sub {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.58rem;
-    letter-spacing: 0.1em;
-    opacity: 0.7;
-    text-transform: uppercase;
-  }
-
-  .contact-form { display: flex; flex-direction: column; gap: 1rem; }
-
-  .form-field { display: flex; flex-direction: column; gap: 0.4rem; }
-
-  .form-label {
-    font-size: 0.72rem;
-    color: var(--muted);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    font-family: 'DM Mono', monospace;
-  }
-
-  .form-input, .form-textarea {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 3px;
-    padding: 0.85rem 1rem;
-    color: var(--white);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.9rem;
-    outline: none;
-    transition: border-color 0.2s;
-  }
-
-  .form-input:focus, .form-textarea:focus { border-color: var(--gold); }
-
-  .form-textarea { resize: vertical; min-height: 120px; }
+  .cv-contact-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+  .cv-btn { background: var(--card); border: 1px solid var(--gold); color: var(--gold); border-radius: 3px; padding: 0.85rem 1rem; text-align: center; text-decoration: none; font-family: 'DM Sans', sans-serif; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; cursor: pointer; transition: all 0.2s; display: flex; flex-direction: column; align-items: center; gap: 0.3rem; }
+  .cv-btn:hover { background: var(--gold); color: var(--black); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(201,168,76,0.2); }
+  .cv-btn-sub { font-family: 'DM Mono', monospace; font-size: 0.58rem; letter-spacing: 0.1em; opacity: 0.7; text-transform: uppercase; }
 
   /* ─── FOOTER ─── */
-  footer {
-    border-top: 1px solid var(--border);
-    padding: 2.5rem 4rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
+  footer { border-top: 1px solid var(--border); padding: 2.5rem 4rem; display: flex; align-items: center; justify-content: space-between; }
   .footer-logo { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--white); }
   .footer-logo span { color: var(--gold); }
   .footer-copy { font-size: 0.75rem; color: var(--muted); }
-
   .footer-links { display: flex; gap: 1.5rem; }
-
-  .footer-links a {
-    font-size: 0.78rem;
-    color: var(--muted);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-
+  .footer-links a { font-size: 0.78rem; color: var(--muted); text-decoration: none; transition: color 0.2s; }
   .footer-links a:hover { color: var(--gold); }
 
   /* Scroll reveal */
-  .reveal {
-    opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
-  }
-
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
   .reveal.visible { opacity: 1; transform: none; }
 
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to   { opacity: 1; transform: none; }
-  }
-
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-  }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: none; } }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
   /* ─── MODAL ─── */
-  .modal-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.85);
-    z-index: 200;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem;
-    backdrop-filter: blur(8px);
-  }
-
+  .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 200; display: none; align-items: center; justify-content: center; padding: 2rem; backdrop-filter: blur(8px); }
   .modal-overlay.open { display: flex; }
-
-  .modal {
-    background: var(--deep);
-    border: 1px solid var(--border-light);
-    border-radius: 6px;
-    max-width: 860px;
-    width: 100%;
-    max-height: 90vh;
-    overflow-y: auto;
-  }
-
-  .modal-header {
-    padding: 2rem 2rem 1rem;
-    border-bottom: 1px solid var(--border);
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 1rem;
-    position: sticky;
-    top: 0;
-    background: var(--deep);
-    z-index: 1;
-  }
-
-  .modal-close {
-    background: none;
-    border: 1px solid var(--border);
-    color: var(--muted);
-    width: 32px; height: 32px;
-    border-radius: 3px;
-    cursor: pointer;
-    font-size: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    transition: all 0.2s;
-  }
-
+  .modal { background: var(--deep); border: 1px solid var(--border-light); border-radius: 6px; max-width: 860px; width: 100%; max-height: 90vh; overflow-y: auto; }
+  .modal-header { padding: 2rem 2rem 1rem; border-bottom: 1px solid var(--border); display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; position: sticky; top: 0; background: var(--deep); z-index: 1; }
+  .modal-close { background: none; border: 1px solid var(--border); color: var(--muted); width: 32px; height: 32px; border-radius: 3px; cursor: pointer; font-size: 1rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.2s; }
   .modal-close:hover { border-color: var(--gold); color: var(--gold); }
-
   .modal-body { padding: 2rem; }
-
   .modal-section { margin-bottom: 2rem; }
-
-  .modal-section-title {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.68rem;
-    color: var(--gold);
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    margin-bottom: 1rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 1px solid var(--border);
-  }
+  .modal-section-title { font-family: 'DM Mono', monospace; font-size: 0.68rem; color: var(--gold); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); }
 
   /* Tables */
   .story-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
-
-  .story-table th {
-    text-align: left;
-    padding: 0.6rem 0.85rem;
-    font-size: 0.65rem;
-    color: var(--gold);
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    font-family: 'DM Mono', monospace;
-    border-bottom: 1px solid var(--border-light);
-    background: rgba(201,168,76,0.04);
-  }
-
-  .story-table td {
-    padding: 0.7rem 0.85rem;
-    border-bottom: 1px solid var(--border);
-    color: var(--muted);
-    vertical-align: top;
-    line-height: 1.5;
-  }
-
-  .story-table td:first-child {
-    color: var(--gold);
-    font-family: 'DM Mono', monospace;
-    font-size: 0.72rem;
-    white-space: nowrap;
-  }
-
+  .story-table th { text-align: left; padding: 0.6rem 0.85rem; font-size: 0.65rem; color: var(--gold); letter-spacing: 0.12em; text-transform: uppercase; font-family: 'DM Mono', monospace; border-bottom: 1px solid var(--border-light); background: rgba(201,168,76,0.04); }
+  .story-table td { padding: 0.7rem 0.85rem; border-bottom: 1px solid var(--border); color: var(--muted); vertical-align: top; line-height: 1.5; }
+  .story-table td:first-child { color: var(--gold); font-family: 'DM Mono', monospace; font-size: 0.72rem; white-space: nowrap; }
   .story-table tr:last-child td { border-bottom: none; }
   .story-table td strong { color: var(--text); }
 
-  .priority-badge {
-    display: inline-block;
-    font-size: 0.62rem;
-    padding: 0.1rem 0.5rem;
-    border-radius: 100px;
-    font-family: 'DM Mono', monospace;
-    letter-spacing: 0.05em;
-  }
-
+  .priority-badge { display: inline-block; font-size: 0.62rem; padding: 0.1rem 0.5rem; border-radius: 100px; font-family: 'DM Mono', monospace; letter-spacing: 0.05em; }
   .p-high { background: rgba(255,100,100,0.15); color: #ff6464; }
   .p-med  { background: rgba(201,168,76,0.15); color: var(--gold); }
   .p-low  { background: rgba(100,200,150,0.12); color: #64c896; }
 
   .raid-table { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
-
-  .raid-table th {
-    text-align: left;
-    padding: 0.5rem 0.85rem;
-    font-size: 0.63rem;
-    color: var(--gold);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    font-family: 'DM Mono', monospace;
-    background: rgba(201,168,76,0.04);
-    border-bottom: 1px solid var(--border-light);
-  }
-
-  .raid-table td {
-    padding: 0.6rem 0.85rem;
-    border-bottom: 1px solid var(--border);
-    color: var(--muted);
-    font-size: 0.78rem;
-    line-height: 1.4;
-    vertical-align: top;
-  }
-
-  .raid-type {
-    display: inline-block;
-    font-size: 0.6rem;
-    padding: 0.1rem 0.45rem;
-    border-radius: 2px;
-    font-family: 'DM Mono', monospace;
-    font-weight: 500;
-  }
-
+  .raid-table th { text-align: left; padding: 0.5rem 0.85rem; font-size: 0.63rem; color: var(--gold); letter-spacing: 0.1em; text-transform: uppercase; font-family: 'DM Mono', monospace; background: rgba(201,168,76,0.04); border-bottom: 1px solid var(--border-light); }
+  .raid-table td { padding: 0.6rem 0.85rem; border-bottom: 1px solid var(--border); color: var(--muted); font-size: 0.78rem; line-height: 1.4; vertical-align: top; }
+  .raid-type { display: inline-block; font-size: 0.6rem; padding: 0.1rem 0.45rem; border-radius: 2px; font-family: 'DM Mono', monospace; font-weight: 500; }
   .r-risk { background: rgba(255,100,100,0.15); color: #ff8080; }
   .r-action { background: rgba(100,150,255,0.15); color: #80aaff; }
   .r-issue { background: rgba(255,180,50,0.15); color: #ffb432; }
   .r-dep { background: rgba(150,100,255,0.15); color: #c080ff; }
 
   .uat-table { width: 100%; border-collapse: collapse; font-size: 0.78rem; }
-
-  .uat-table th {
-    text-align: left;
-    padding: 0.5rem 0.8rem;
-    font-size: 0.62rem;
-    color: var(--gold);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    font-family: 'DM Mono', monospace;
-    background: rgba(201,168,76,0.04);
-    border-bottom: 1px solid var(--border-light);
-  }
-
-  .uat-table td {
-    padding: 0.6rem 0.8rem;
-    border-bottom: 1px solid var(--border);
-    color: var(--muted);
-    vertical-align: top;
-  }
-
+  .uat-table th { text-align: left; padding: 0.5rem 0.8rem; font-size: 0.62rem; color: var(--gold); letter-spacing: 0.1em; text-transform: uppercase; font-family: 'DM Mono', monospace; background: rgba(201,168,76,0.04); border-bottom: 1px solid var(--border-light); }
+  .uat-table td { padding: 0.6rem 0.8rem; border-bottom: 1px solid var(--border); color: var(--muted); vertical-align: top; }
   .status-pass { color: #64c896; font-weight: 600; }
   .status-fail { color: #ff6464; font-weight: 600; }
   .status-pend { color: var(--gold); font-weight: 600; }
 
+  /* Flow diagrams for modal Breeze */
+  .flow-container { display: flex; flex-direction: column; align-items: stretch; gap: 0; }
+  .flow-row { display: flex; align-items: center; gap: 0; width: 100%; justify-content: center; }
+  .flow-box { background: var(--card); border: 1.5px solid var(--border-light); border-radius: 4px; padding: 0.5rem 0.75rem; font-size: 0.7rem; color: var(--text); text-align: center; min-width: 90px; line-height: 1.3; flex-shrink: 0; }
+  .flow-box.gold-box { border-color: var(--gold); background: var(--gold-dim); color: var(--gold-light); }
+  .flow-box.start-box { border-radius: 100px; background: var(--gold); color: var(--black); font-weight: 600; min-width: 80px; }
+  .flow-box.end-box { border-radius: 100px; background: transparent; border-color: var(--gold); color: var(--gold); min-width: 70px; }
+  .flow-arrow-h { width: 24px; height: 1px; background: var(--border-light); position: relative; flex-shrink: 0; }
+  .flow-arrow-h::after { content: '▶'; position: absolute; right: -5px; top: 50%; transform: translateY(-50%); font-size: 0.4rem; color: var(--muted); }
+  .flow-arrow-v { height: 18px; width: 1px; background: var(--border-light); position: relative; margin: 0 auto; }
+  .flow-arrow-v::after { content: '▼'; position: absolute; bottom: -5px; left: 50%; transform: translateX(-50%); font-size: 0.4rem; color: var(--muted); }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 1024px) {
+    .skills-grid { grid-template-columns: repeat(2, 1fr); }
+    .tools-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+
   @media (max-width: 900px) {
-    nav { padding: 1rem 2rem; }
-    #hero { padding: 7rem 2rem 4rem; }
-    .hero-stats { display: none; }
-    section, #projects { padding: 4rem 2rem; }
-    .about-grid, .skills-grid, .certs-grid, .contact-wrapper, .tools-grid { grid-template-columns: 1fr; }
-    .project-featured, .project-card-full { grid-template-columns: 1fr; }
-    .project-featured-left, .project-card-full-left { border-right: none; border-bottom: 1px solid var(--border); }
-    .projects-row { grid-template-columns: 1fr; }
-    footer { flex-direction: column; gap: 1rem; padding: 2rem; }
+    nav { padding: 1rem 1.5rem; }
     .nav-links { display: none; }
-    .divider { margin: 0 2rem; max-width: calc(100% - 4rem); }
+    .nav-hamburger { display: flex; }
+
+    #hero { padding: 7rem 1.5rem 4rem; }
+    .hero-stats { display: none; }
+
+    section, #projects { padding: 3.5rem 1.5rem; }
+
+    .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+
+    /* Projects responsive */
+    .project-featured {
+      grid-template-columns: 1fr;
+      overflow: visible;
+    }
+    .project-featured-left {
+      border-right: none;
+      border-bottom: 1px solid var(--border);
+      padding: 1.75rem;
+    }
+    .project-featured-right {
+      padding: 1.75rem;
+      overflow: visible;
+    }
+    .project-featured-right .diagram-area {
+      overflow: visible;
+    }
+    .projects-row { grid-template-columns: 1fr; gap: 1.5rem; }
+
+    .project-card-full {
+      grid-template-columns: 1fr;
+    }
+    .project-card-full-left {
+      border-right: none;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* ML pipeline on mobile — stack vertically */
+    .ml-pipeline { gap: 0.5rem; }
+    .ml-row {
+      grid-template-columns: 1fr;
+      gap: 0.4rem;
+    }
+    .ml-h-arrow { display: none; }
+    .ml-connector-row { display: none; }
+    .ml-node { width: 100%; }
+
+    .skills-grid { grid-template-columns: 1fr; }
+    .certs-grid { grid-template-columns: 1fr; gap: 1rem; }
+    .contact-wrapper { grid-template-columns: 1fr; gap: 2rem; }
+    .tools-grid { grid-template-columns: repeat(2, 1fr); }
     .cv-contact-btns { grid-template-columns: 1fr; }
+
+    footer { flex-direction: column; gap: 1rem; padding: 2rem 1.5rem; text-align: center; }
+    .footer-links { justify-content: center; }
+
+    .divider { margin: 0 1.5rem; max-width: calc(100% - 3rem); }
+
+    .modal { max-height: 95vh; }
+    .modal-body { padding: 1.25rem; }
+
+    .bpmn-flow { min-width: 500px; }
+  }
+
+  @media (max-width: 480px) {
+    h1.hero-name { font-size: clamp(2.8rem, 12vw, 4rem); }
+    .hero-actions { flex-direction: column; }
+    .btn-primary, .btn-outline { text-align: center; width: 100%; }
+    .tools-grid { grid-template-columns: 1fr 1fr; }
+    .story-table { font-size: 0.75rem; }
+    .raid-table, .uat-table { font-size: 0.72rem; }
   }
 </style>
 </head>
@@ -1577,68 +605,47 @@
     <li><a href="#certifications">Certifications</a></li>
     <li><a href="#contact" class="nav-cta">Contact</a></li>
   </ul>
+  <button class="nav-hamburger" onclick="toggleMobileMenu()" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<!-- Mobile menu -->
+<div class="nav-mobile-menu" id="mobileMenu">
+  <button class="nav-mobile-close" onclick="toggleMobileMenu()">✕</button>
+  <a href="#about" onclick="toggleMobileMenu()">About</a>
+  <a href="#experience" onclick="toggleMobileMenu()">Experience</a>
+  <a href="#projects" onclick="toggleMobileMenu()">Projects</a>
+  <a href="#skills" onclick="toggleMobileMenu()">Skills</a>
+  <a href="#certifications" onclick="toggleMobileMenu()">Certifications</a>
+  <a href="#contact" onclick="toggleMobileMenu()">Contact</a>
+</div>
 
 <!-- ─── HERO ─── -->
 <section id="hero" style="max-width:none; padding-left:4rem; padding-right:4rem;">
   <div class="hero-grid-bg"></div>
   <div class="hero-glow"></div>
-
   <div class="hero-content">
     <div class="hero-eyebrow">Available for Hybrid & Remote opportunities</div>
-    <h1 class="hero-name">
-      Shimark<br>
-      <span class="line2">Ahmed</span>
-    </h1>
+    <h1 class="hero-name">Shimark<br><span class="line2">Ahmed</span></h1>
     <div class="hero-roles">
       <span class="role-pill active">Business Analyst</span>
       <span class="role-pill active">IT Project Manager</span>
       <span class="role-pill">Agile Practitioner</span>
       <span class="role-pill">Fintech · GovTech · PropTech</span>
     </div>
-    <p class="hero-desc">
-      Detail-oriented BA & PM with 2+ years delivering Agile projects across fintech,
-      municipal technology, and enterprise systems. PMP certified with a track record of
-      100% on-time milestone delivery.
-    </p>
+    <p class="hero-desc">Detail-oriented BA & PM with 2+ years delivering Agile projects across fintech, municipal technology, and enterprise systems. PMP certified with a track record of 100% on-time milestone delivery.</p>
     <div class="hero-actions">
-
-  <a href="#projects" class="btn-primary">
-    View Case Studies
-  </a>
-
-  <a href="Shimark_Resume_Business_analyst.pdf"
-     class="btn-outline"
-     download="Shimark_Business_Analyst_CV.pdf">
-     📋 Business Analyst CV
-  </a>
-
-  <a href="Shimark_Resume_Project_manager.pdf"
-     class="btn-outline"
-     download="Shimark_Project_Manager_CV.pdf">
-     🗂️ Project Manager CV
-  </a>
-
-</div>
+      <a href="#projects" class="btn-primary">View Case Studies</a>
+      <a href="Shimark_Resume_Business_analyst.pdf" class="btn-outline" download="Shimark_Business_Analyst_CV.pdf">📋 Business Analyst CV</a>
+      <a href="Shimark_Resume_Project_manager.pdf" class="btn-outline" download="Shimark_Project_Manager_CV.pdf">🗂️ Project Manager CV</a>
+    </div>
   </div>
-
   <div class="hero-stats">
-    <div class="stat-item gold">
-      <div class="stat-num">2<span>+</span></div>
-      <div class="stat-label">Years Experience</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num">4</div>
-      <div class="stat-label">Projects Delivered</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num">100<span>%</span></div>
-      <div class="stat-label">Milestone Adherence</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num">3</div>
-      <div class="stat-label">Certifications</div>
-    </div>
+    <div class="stat-item gold"><div class="stat-num">2<span>+</span></div><div class="stat-label">Years Experience</div></div>
+    <div class="stat-item"><div class="stat-num">10 <span>+</span></div><div class="stat-label">Projects Delivered</div></div>
+    <div class="stat-item"><div class="stat-num">100<span>%</span></div><div class="stat-label">Milestone Adherence</div></div>
+    <div class="stat-item"><div class="stat-num">3</div><div class="stat-label">Certifications</div></div>
   </div>
 </section>
 
@@ -1648,7 +655,6 @@
 <section id="about">
   <div class="section-label">01 · Profile</div>
   <h2 class="section-title">About Me</h2>
-
   <div class="about-grid reveal">
     <div class="about-text">
       <p>I'm <strong>Shimark Ahmed</strong>, a Business Analyst and IT Project Manager with over two years of hands-on experience bridging the gap between business needs and technical delivery across fintech, municipal technology, and real estate platforms.</p>
@@ -1657,26 +663,11 @@
       <p>I thrive in cross-functional environments where clear communication, structured documentation, and proactive stakeholder management make the difference between a project that ships and one that stalls.</p>
     </div>
     <div class="about-sidebar">
-      <div class="info-card">
-        <div class="info-card-label">Location</div>
-        <div class="info-card-value">Colombo, Sri Lanka · Open to Hybrid & Remote</div>
-      </div>
-      <div class="info-card">
-        <div class="info-card-label">Education</div>
-        <div class="info-card-value">BSc (Hons) Computer Science<br>Staffordshire University, UK · 2022–2025</div>
-      </div>
-      <div class="info-card">
-        <div class="info-card-label">Email</div>
-        <div class="info-card-value">shimark.ahmed.2002@gmail.com</div>
-      </div>
-      <div class="info-card">
-        <div class="info-card-label">Phone</div>
-        <div class="info-card-value">+94 76 7455 458</div>
-      </div>
-      <div class="info-card">
-        <div class="info-card-label">Current Role</div>
-        <div class="info-card-value">Project Coordinator · Optimo Gov · London</div>
-      </div>
+      <div class="info-card"><div class="info-card-label">Location</div><div class="info-card-value">Colombo, Sri Lanka · Open to Hybrid & Remote</div></div>
+      <div class="info-card"><div class="info-card-label">Education</div><div class="info-card-value">BSc (Hons) Computer Science<br>Staffordshire University, UK · 2022–2025</div></div>
+      <div class="info-card"><div class="info-card-label">Email</div><div class="info-card-value">shimark.ahmed.2002@gmail.com</div></div>
+      <div class="info-card"><div class="info-card-label">Phone</div><div class="info-card-value">+94 76 7455 458</div></div>
+      <div class="info-card"><div class="info-card-label">Current Role</div><div class="info-card-value">Project Coordinator · Optimo Gov · London</div></div>
     </div>
   </div>
 </section>
@@ -1688,7 +679,6 @@
   <div class="section-label">02 · Career</div>
   <h2 class="section-title">Work Experience</h2>
   <p class="section-sub">A timeline of roles where I've delivered impact across Agile teams and complex projects.</p>
-
   <div class="timeline reveal">
     <div class="timeline-item">
       <div class="timeline-dot active"></div>
@@ -1704,7 +694,6 @@
         <li>Bridged communication between development, QA, and business teams maintaining clear requirement traceability.</li>
       </ul>
     </div>
-
     <div class="timeline-item">
       <div class="timeline-dot"></div>
       <div class="timeline-date">August 2024 – April 2025</div>
@@ -1718,7 +707,6 @@
         <li>Coordinated UAT cycles, tracked defects, and ensured full issue resolution before production deployment.</li>
       </ul>
     </div>
-
     <div class="timeline-item" style="padding-bottom:0;">
       <div class="timeline-dot"></div>
       <div class="timeline-date">March 2024 – August 2024</div>
@@ -1742,7 +730,7 @@
   <h2 class="section-title">Project Portfolio</h2>
   <p class="section-sub">Real BA & PM artifacts from delivered projects — click any card to explore the full case study.</p>
 
-  <!-- PEOPLES PAY — Featured full-width -->
+  <!-- PEOPLES PAY — Featured -->
   <div class="project-featured reveal" onclick="openModal('peoples-pay')">
     <div class="project-featured-left">
       <div>
@@ -1750,25 +738,11 @@
         <div class="project-name" style="margin-top:0.75rem;">Peoples Pay</div>
         <div class="project-sub">Digital Wallet Platform · Enterprise Fintech</div>
       </div>
-      <p class="project-desc">
-        Large-scale digital wallet platform serving enterprise clients across multiple markets. Led requirements gathering, authored BRDs and SRS documentation, coordinated stakeholder discussions across banking operations and compliance teams, and managed system validation through UAT to successful deployment.
-      </p>
+      <p class="project-desc">Large-scale digital wallet platform serving enterprise clients across multiple markets. Led requirements gathering, authored BRDs and SRS documentation, coordinated stakeholder discussions across banking operations and compliance teams, and managed system validation through UAT to successful deployment.</p>
       <div class="artifact-list">
-        <div class="artifact-item">
-          <div class="artifact-icon">📋</div>
-          <div class="artifact-name">Business Requirements Document (BRD)</div>
-          <div class="artifact-type">BRD</div>
-        </div>
-        <div class="artifact-item">
-          <div class="artifact-icon">📖</div>
-          <div class="artifact-name">Agile User Stories + Acceptance Criteria</div>
-          <div class="artifact-type">User Stories</div>
-        </div>
-        <div class="artifact-item">
-          <div class="artifact-icon">🔄</div>
-          <div class="artifact-name">BPMN Process Diagram – Payment Flow</div>
-          <div class="artifact-type">BPMN</div>
-        </div>
+        <div class="artifact-item"><div class="artifact-icon">📋</div><div class="artifact-name">Business Requirements Document (BRD)</div><div class="artifact-type">BRD</div></div>
+        <div class="artifact-item"><div class="artifact-icon">📖</div><div class="artifact-name">Agile User Stories + Acceptance Criteria</div><div class="artifact-type">User Stories</div></div>
+        <div class="artifact-item"><div class="artifact-icon">🔄</div><div class="artifact-name">BPMN Process Diagram – Payment Flow</div><div class="artifact-type">BPMN</div></div>
       </div>
       <div class="tech-tags">
         <span class="tech-tag">Microsoft Dynamics 365</span>
@@ -1778,60 +752,28 @@
         <span class="tech-tag">Agile / SCRUM</span>
       </div>
     </div>
-
     <div class="project-featured-right">
       <div class="diagram-area" style="flex:1;">
         <div class="diagram-title">BPMN — Digital Wallet Payment Flow</div>
-        <div class="bpmn-flow">
-          <div class="bpmn-node">
-            <div class="bpmn-shape bpmn-circle" style="font-size:0.55rem;">START</div>
-            <div class="bpmn-label">Initiate</div>
-          </div>
-          <div class="bpmn-arrow"></div>
-          <div class="bpmn-node">
-            <div class="bpmn-shape bpmn-rect">User Auth & KYC Check</div>
-            <div class="bpmn-label">Identity</div>
-          </div>
-          <div class="bpmn-arrow"></div>
-          <div class="bpmn-node">
-            <div class="bpmn-diamond-wrap">
-              <div class="bpmn-diamond"></div>
-              <div class="bpmn-diamond-label">KYC Pass?</div>
-            </div>
-            <div class="bpmn-label">Decision</div>
-          </div>
-          <div class="bpmn-arrow"></div>
-          <div class="bpmn-node">
-            <div class="bpmn-shape bpmn-rect highlight">Enter Payment Details</div>
-            <div class="bpmn-label">Input</div>
-          </div>
-          <div class="bpmn-arrow"></div>
-          <div class="bpmn-node">
-            <div class="bpmn-shape bpmn-rect">Fraud Detection Engine</div>
-            <div class="bpmn-label">Risk Check</div>
-          </div>
-          <div class="bpmn-arrow"></div>
-          <div class="bpmn-node">
-            <div class="bpmn-diamond-wrap">
-              <div class="bpmn-diamond"></div>
-              <div class="bpmn-diamond-label">Approved?</div>
-            </div>
-            <div class="bpmn-label">Decision</div>
-          </div>
-          <div class="bpmn-arrow"></div>
-          <div class="bpmn-node">
-            <div class="bpmn-shape bpmn-rect highlight">Process & Settle</div>
-            <div class="bpmn-label">Execution</div>
-          </div>
-          <div class="bpmn-arrow"></div>
-          <div class="bpmn-node">
-            <div class="bpmn-shape bpmn-rect">Notify & Log</div>
-            <div class="bpmn-label">Confirm</div>
-          </div>
-          <div class="bpmn-arrow"></div>
-          <div class="bpmn-node">
-            <div class="bpmn-shape bpmn-circle end" style="font-size:0.55rem;">END</div>
-            <div class="bpmn-label">Complete</div>
+        <div class="bpmn-scroll">
+          <div class="bpmn-flow">
+            <div class="bpmn-node"><div class="bpmn-shape bpmn-circle" style="font-size:0.55rem;">START</div><div class="bpmn-label">Initiate</div></div>
+            <div class="bpmn-arrow"></div>
+            <div class="bpmn-node"><div class="bpmn-shape bpmn-rect">User Auth & KYC Check</div><div class="bpmn-label">Identity</div></div>
+            <div class="bpmn-arrow"></div>
+            <div class="bpmn-node"><div class="bpmn-diamond-wrap"><div class="bpmn-diamond"></div><div class="bpmn-diamond-label">KYC Pass?</div></div><div class="bpmn-label">Decision</div></div>
+            <div class="bpmn-arrow"></div>
+            <div class="bpmn-node"><div class="bpmn-shape bpmn-rect highlight">Enter Payment Details</div><div class="bpmn-label">Input</div></div>
+            <div class="bpmn-arrow"></div>
+            <div class="bpmn-node"><div class="bpmn-shape bpmn-rect">Fraud Detection Engine</div><div class="bpmn-label">Risk Check</div></div>
+            <div class="bpmn-arrow"></div>
+            <div class="bpmn-node"><div class="bpmn-diamond-wrap"><div class="bpmn-diamond"></div><div class="bpmn-diamond-label">Approved?</div></div><div class="bpmn-label">Decision</div></div>
+            <div class="bpmn-arrow"></div>
+            <div class="bpmn-node"><div class="bpmn-shape bpmn-rect highlight">Process & Settle</div><div class="bpmn-label">Execution</div></div>
+            <div class="bpmn-arrow"></div>
+            <div class="bpmn-node"><div class="bpmn-shape bpmn-rect">Notify & Log</div><div class="bpmn-label">Confirm</div></div>
+            <div class="bpmn-arrow"></div>
+            <div class="bpmn-node"><div class="bpmn-shape bpmn-circle end" style="font-size:0.55rem;">END</div><div class="bpmn-label">Complete</div></div>
           </div>
         </div>
       </div>
@@ -1842,9 +784,8 @@
     </div>
   </div>
 
-  <!-- WYNDHAM + BREEZE — 2-col row -->
+  <!-- WYNDHAM + BREEZE -->
   <div class="projects-row">
-
     <div class="project-card reveal" onclick="openModal('wyndham')">
       <div class="card-header-strip">
         <div class="project-tag">GovTech · Optimo Gov · 2025</div>
@@ -1852,25 +793,11 @@
         <div class="project-sub">Municipal Digital Platform</div>
       </div>
       <div class="card-body-pad">
-        <p class="project-desc">
-          Venue and facility management system across multiple council departments. Managed deliverables register, issue log, and stakeholder alignment achieving 100% on-time delivery of all key milestones.
-        </p>
+        <p class="project-desc">Venue and facility management system across multiple council departments. Managed deliverables register, issue log, and stakeholder alignment achieving 100% on-time delivery of all key milestones.</p>
         <div class="artifact-list">
-          <div class="artifact-item">
-            <div class="artifact-icon">⚠️</div>
-            <div class="artifact-name">RAID Log Sample</div>
-            <div class="artifact-type">RAID</div>
-          </div>
-          <div class="artifact-item">
-            <div class="artifact-icon">✅</div>
-            <div class="artifact-name">UAT Test Plan</div>
-            <div class="artifact-type">UAT</div>
-          </div>
-          <div class="artifact-item">
-            <div class="artifact-icon">📐</div>
-            <div class="artifact-name">Functional Requirements Spec</div>
-            <div class="artifact-type">FRS</div>
-          </div>
+          <div class="artifact-item"><div class="artifact-icon">⚠️</div><div class="artifact-name">RAID Log Sample</div><div class="artifact-type">RAID</div></div>
+          <div class="artifact-item"><div class="artifact-icon">✅</div><div class="artifact-name">UAT Test Plan</div><div class="artifact-type">UAT</div></div>
+          <div class="artifact-item"><div class="artifact-icon">📐</div><div class="artifact-name">Functional Requirements Spec</div><div class="artifact-type">FRS</div></div>
         </div>
         <div class="tech-tags">
           <span class="tech-tag">ClickUp</span>
@@ -1888,20 +815,10 @@
         <div class="project-sub">Real Estate Web Application</div>
       </div>
       <div class="card-body-pad">
-        <p class="project-desc">
-          Property search and discovery web application. Conducted client interviews, developed business model canvas, user flow diagrams, and system documentation for the development team.
-        </p>
+        <p class="project-desc">Property search and discovery web application. Conducted client interviews, developed business model canvas, user flow diagrams, and system documentation for the development team.</p>
         <div class="artifact-list">
-          <div class="artifact-item">
-            <div class="artifact-icon">🗺️</div>
-            <div class="artifact-name">User Journey Flow Diagram</div>
-            <div class="artifact-type">Process Flow</div>
-          </div>
-          <div class="artifact-item">
-            <div class="artifact-icon">📋</div>
-            <div class="artifact-name">User Stories — Property Search</div>
-            <div class="artifact-type">User Stories</div>
-          </div>
+          <div class="artifact-item"><div class="artifact-icon">🗺️</div><div class="artifact-name">User Journey Flow Diagram</div><div class="artifact-type">Process Flow</div></div>
+          <div class="artifact-item"><div class="artifact-icon">📋</div><div class="artifact-name">User Stories — Property Search</div><div class="artifact-type">User Stories</div></div>
         </div>
         <div class="tech-tags">
           <span class="tech-tag">Lucidchart</span>
@@ -1911,10 +828,9 @@
         </div>
       </div>
     </div>
-
   </div>
 
-  <!-- SWINGRIGHT — Full width horizontal -->
+  <!-- SWINGRIGHT — Full width, FIXED DIAGRAM -->
   <div class="project-card-full reveal" onclick="openModal('swingright')">
     <div class="project-card-full-left">
       <div>
@@ -1922,25 +838,11 @@
         <div class="project-name" style="margin-top:0.75rem;">SwingRight</div>
         <div class="project-sub">AI-Powered Cricket Shot Analysis · Final Year Project</div>
       </div>
-      <p class="project-desc">
-        Solo-developed full-stack AI web application that analyses cricket batting technique using computer vision. Led all BA, UX, and development activities — from requirements documentation and wireframing through to model training and deployment.
-      </p>
+      <p class="project-desc">Solo-developed full-stack AI web application that analyses cricket batting technique using computer vision. Led all BA, UX, and development activities — from requirements documentation and wireframing through to model training and deployment.</p>
       <div class="artifact-list">
-        <div class="artifact-item">
-          <div class="artifact-icon">📐</div>
-          <div class="artifact-name">System Architecture Diagram</div>
-          <div class="artifact-type">Architecture</div>
-        </div>
-        <div class="artifact-item">
-          <div class="artifact-icon">🔄</div>
-          <div class="artifact-name">ML Pipeline Flow — Shot Analysis</div>
-          <div class="artifact-type">Process Flow</div>
-        </div>
-        <div class="artifact-item">
-          <div class="artifact-icon">📋</div>
-          <div class="artifact-name">Functional Requirements & User Stories</div>
-          <div class="artifact-type">FRS</div>
-        </div>
+        <div class="artifact-item"><div class="artifact-icon">📐</div><div class="artifact-name">System Architecture Diagram</div><div class="artifact-type">Architecture</div></div>
+        <div class="artifact-item"><div class="artifact-icon">🔄</div><div class="artifact-name">ML Pipeline Flow — Shot Analysis</div><div class="artifact-type">Process Flow</div></div>
+        <div class="artifact-item"><div class="artifact-icon">📋</div><div class="artifact-name">Functional Requirements & User Stories</div><div class="artifact-type">FRS</div></div>
       </div>
       <div class="tech-tags">
         <span class="tech-tag">Python</span>
@@ -1952,39 +854,61 @@
     </div>
 
     <div class="project-card-full-right">
-      <div class="diagram-area" style="flex:1;">
+      <!-- FIXED ML PIPELINE DIAGRAM -->
+      <div class="diagram-area" style="flex:1; display:flex; flex-direction:column;">
         <div class="diagram-title">ML Pipeline — Shot Analysis Flow</div>
-        <div class="flow-container">
-          <div class="flow-row">
-            <div class="flow-box start-box">Video Upload</div>
-            <div class="flow-arrow-h"></div>
-            <div class="flow-box">Frame Extraction (OpenCV)</div>
-            <div class="flow-arrow-h"></div>
-            <div class="flow-box">Pose Estimation (MediaPipe)</div>
+        <div class="ml-pipeline" style="flex:1; justify-content:center;">
+          <!-- Row 1: Video Upload → Frame Extraction → Pose Estimation -->
+          <div class="ml-row">
+            <div class="ml-node start">Video<br>Upload</div>
+            <div class="ml-h-arrow">▶</div>
+            <div class="ml-node">Frame Extraction<br><span style="font-size:0.6rem;color:var(--muted);">OpenCV</span></div>
+            <div class="ml-h-arrow">▶</div>
+            <div class="ml-node">Pose Estimation<br><span style="font-size:0.6rem;color:var(--muted);">MediaPipe</span></div>
           </div>
-          <div class="flow-arrow-v" style="align-self:flex-end; margin-right:55px;"></div>
-          <div class="flow-row" style="justify-content:flex-end;">
-            <div class="flow-box gold-box">Shot Classification (TF Model)</div>
-            <div class="flow-arrow-h" style="transform:rotate(180deg);"></div>
-            <div class="flow-box">Keypoint Extraction</div>
+          <!-- Connector: arrow down from col 3, up from col 1 of next row -->
+          <div class="ml-connector-row">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div class="ml-v-down" style="display:flex;flex-direction:column;align-items:center;">
+              <div class="ml-v-line" style="width:1px;height:10px;background:var(--border-light);"></div>
+              <span style="color:var(--muted);font-size:0.5rem;">▼</span>
+            </div>
           </div>
-          <div class="flow-arrow-v" style="align-self:flex-start; margin-left:55px;"></div>
-          <div class="flow-row">
-            <div class="flow-box">Accuracy Scoring Engine</div>
-            <div class="flow-arrow-h"></div>
-            <div class="flow-box">Feedback Generation</div>
-            <div class="flow-arrow-h"></div>
-            <div class="flow-box end-box">Result to User</div>
+          <!-- Row 2: Shot Classification ← Keypoint Extraction (right-to-left) -->
+          <div class="ml-row">
+            <div class="ml-node gold">Shot Classification<br><span style="font-size:0.6rem;opacity:0.8;">TensorFlow Model</span></div>
+            <div class="ml-h-arrow" style="transform:rotate(180deg); color:var(--muted);">◀</div>
+            <div class="ml-node">Keypoint<br>Extraction</div>
+            <div class="ml-h-arrow" style="transform:rotate(180deg); color:var(--muted);">◀</div>
+            <div class="ml-node">Landmark<br>Analysis</div>
+          </div>
+          <!-- Connector: arrow down from col 1 -->
+          <div class="ml-connector-row">
+            <div class="ml-v-down" style="display:flex;flex-direction:column;align-items:center;">
+              <div class="ml-v-line" style="width:1px;height:10px;background:var(--border-light);"></div>
+              <span style="color:var(--muted);font-size:0.5rem;">▼</span>
+            </div>
+            <div></div><div></div><div></div><div></div>
+          </div>
+          <!-- Row 3: Accuracy Scoring → Feedback → Result -->
+          <div class="ml-row">
+            <div class="ml-node">Accuracy<br>Scoring</div>
+            <div class="ml-h-arrow">▶</div>
+            <div class="ml-node">Feedback<br>Generation</div>
+            <div class="ml-h-arrow">▶</div>
+            <div class="ml-node end">Result<br>to User</div>
           </div>
         </div>
       </div>
       <div class="outcome-box">
         <div class="outcome-label">Tech Stack</div>
-        <div class="outcome-text">Python · TensorFlow · MediaPipe · React · Full-Stack · Solo Project</div>
+        <div class="outcome-text">Python · TensorFlow · MediaPipe · OpenCV · React · Full-Stack Solo Project · Staffordshire University Final Year</div>
       </div>
     </div>
   </div>
-
 </section>
 
 <div class="divider"></div>
@@ -1994,143 +918,65 @@
   <div class="section-label">04 · Capabilities</div>
   <h2 class="section-title">Skills & Expertise</h2>
   <p class="section-sub">Core competencies spanning requirements engineering, Agile delivery, and stakeholder management.</p>
-
   <div class="skills-grid reveal">
     <div class="skill-category">
       <div class="skill-cat-icon">📋</div>
       <div class="skill-cat-name">Requirements Engineering</div>
       <div class="skill-bars">
-        <div class="skill-bar-item">
-          <div class="skill-bar-top"><span>BRD / SRS Authoring</span><span class="skill-bar-pct">95%</span></div>
-          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:95%"></div></div>
-        </div>
-        <div class="skill-bar-item">
-          <div class="skill-bar-top"><span>User Stories & Acceptance Criteria</span><span class="skill-bar-pct">92%</span></div>
-          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:92%"></div></div>
-        </div>
-        <div class="skill-bar-item">
-          <div class="skill-bar-top"><span>Gap Analysis</span><span class="skill-bar-pct">88%</span></div>
-          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:88%"></div></div>
-        </div>
-        <div class="skill-bar-item">
-          <div class="skill-bar-top"><span>Traceability Matrix</span><span class="skill-bar-pct">85%</span></div>
-          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:85%"></div></div>
-        </div>
+        <div class="skill-bar-item"><div class="skill-bar-top"><span>BRD / SRS Authoring</span><span class="skill-bar-pct">95%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="width:95%"></div></div></div>
+        <div class="skill-bar-item"><div class="skill-bar-top"><span>User Stories & Acceptance Criteria</span><span class="skill-bar-pct">92%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="width:92%"></div></div></div>
+        <div class="skill-bar-item"><div class="skill-bar-top"><span>Gap Analysis</span><span class="skill-bar-pct">88%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="width:88%"></div></div></div>
+        <div class="skill-bar-item"><div class="skill-bar-top"><span>Traceability Matrix</span><span class="skill-bar-pct">85%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="width:85%"></div></div></div>
       </div>
     </div>
-
     <div class="skill-category">
       <div class="skill-cat-icon">🔄</div>
       <div class="skill-cat-name">Agile Project Delivery</div>
       <div class="skill-bars">
-        <div class="skill-bar-item">
-          <div class="skill-bar-top"><span>Agile / SCRUM</span><span class="skill-bar-pct">94%</span></div>
-          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:94%"></div></div>
-        </div>
-        <div class="skill-bar-item">
-          <div class="skill-bar-top"><span>Sprint Planning & Backlog Refinement</span><span class="skill-bar-pct">90%</span></div>
-          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:90%"></div></div>
-        </div>
-        <div class="skill-bar-item">
-          <div class="skill-bar-top"><span>UAT Coordination</span><span class="skill-bar-pct">92%</span></div>
-          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:92%"></div></div>
-        </div>
-        <div class="skill-bar-item">
-          <div class="skill-bar-top"><span>Scope & Change Management</span><span class="skill-bar-pct">87%</span></div>
-          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:87%"></div></div>
-        </div>
+        <div class="skill-bar-item"><div class="skill-bar-top"><span>Agile / SCRUM</span><span class="skill-bar-pct">94%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="width:94%"></div></div></div>
+        <div class="skill-bar-item"><div class="skill-bar-top"><span>Sprint Planning & Backlog Refinement</span><span class="skill-bar-pct">90%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="width:90%"></div></div></div>
+        <div class="skill-bar-item"><div class="skill-bar-top"><span>UAT Coordination</span><span class="skill-bar-pct">92%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="width:92%"></div></div></div>
+        <div class="skill-bar-item"><div class="skill-bar-top"><span>Scope & Change Management</span><span class="skill-bar-pct">87%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="width:87%"></div></div></div>
       </div>
     </div>
-
     <div class="skill-category">
       <div class="skill-cat-icon">🗺️</div>
       <div class="skill-cat-name">Process & Analysis</div>
       <div class="skill-bars">
-        <div class="skill-bar-item">
-          <div class="skill-bar-top"><span>BPMN Process Mapping</span><span class="skill-bar-pct">90%</span></div>
-          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:90%"></div></div>
-        </div>
-        <div class="skill-bar-item">
-          <div class="skill-bar-top"><span>As-Is / To-Be Analysis</span><span class="skill-bar-pct">88%</span></div>
-          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:88%"></div></div>
-        </div>
-        <div class="skill-bar-item">
-          <div class="skill-bar-top"><span>User Journey Mapping</span><span class="skill-bar-pct">85%</span></div>
-          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:85%"></div></div>
-        </div>
-        <div class="skill-bar-item">
-          <div class="skill-bar-top"><span>Wireframing (Balsamiq)</span><span class="skill-bar-pct">80%</span></div>
-          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:80%"></div></div>
-        </div>
+        <div class="skill-bar-item"><div class="skill-bar-top"><span>BPMN Process Mapping</span><span class="skill-bar-pct">90%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="width:90%"></div></div></div>
+        <div class="skill-bar-item"><div class="skill-bar-top"><span>As-Is / To-Be Analysis</span><span class="skill-bar-pct">88%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="width:88%"></div></div></div>
+        <div class="skill-bar-item"><div class="skill-bar-top"><span>User Journey Mapping</span><span class="skill-bar-pct">85%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="width:85%"></div></div></div>
+        <div class="skill-bar-item"><div class="skill-bar-top"><span>Wireframing (Balsamiq)</span><span class="skill-bar-pct">80%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="width:80%"></div></div></div>
       </div>
     </div>
-
     <div class="skill-category">
       <div class="skill-cat-icon">🤝</div>
       <div class="skill-cat-name">Stakeholder Management</div>
       <div class="skill-bars">
-        <div class="skill-bar-item">
-          <div class="skill-bar-top"><span>Stakeholder Interviews & Workshops</span><span class="skill-bar-pct">93%</span></div>
-          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:93%"></div></div>
-        </div>
-        <div class="skill-bar-item">
-          <div class="skill-bar-top"><span>Cross-functional Collaboration</span><span class="skill-bar-pct">96%</span></div>
-          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:96%"></div></div>
-        </div>
-        <div class="skill-bar-item">
-          <div class="skill-bar-top"><span>Client-facing Communication</span><span class="skill-bar-pct">91%</span></div>
-          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:91%"></div></div>
-        </div>
-        <div class="skill-bar-item">
-          <div class="skill-bar-top"><span>RAID Log Management</span><span class="skill-bar-pct">88%</span></div>
-          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:88%"></div></div>
-        </div>
+        <div class="skill-bar-item"><div class="skill-bar-top"><span>Stakeholder Interviews & Workshops</span><span class="skill-bar-pct">93%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="width:93%"></div></div></div>
+        <div class="skill-bar-item"><div class="skill-bar-top"><span>Cross-functional Collaboration</span><span class="skill-bar-pct">96%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="width:96%"></div></div></div>
+        <div class="skill-bar-item"><div class="skill-bar-top"><span>Client-facing Communication</span><span class="skill-bar-pct">91%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="width:91%"></div></div></div>
+        <div class="skill-bar-item"><div class="skill-bar-top"><span>RAID Log Management</span><span class="skill-bar-pct">88%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="width:88%"></div></div></div>
       </div>
     </div>
-
     <div class="skill-category">
       <div class="skill-cat-icon">⚙️</div>
       <div class="skill-cat-name">Technical Skills</div>
       <div class="skill-bars">
-        <div class="skill-bar-item">
-          <div class="skill-bar-top"><span>ERP / CRM Integration (D365)</span><span class="skill-bar-pct">82%</span></div>
-          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:82%"></div></div>
-        </div>
-        <div class="skill-bar-item">
-          <div class="skill-bar-top"><span>SQL (Data Queries & Validation)</span><span class="skill-bar-pct">75%</span></div>
-          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:75%"></div></div>
-        </div>
-        <div class="skill-bar-item">
-          <div class="skill-bar-top"><span>REST API Testing (Postman)</span><span class="skill-bar-pct">78%</span></div>
-          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:78%"></div></div>
-        </div>
-        <div class="skill-bar-item">
-          <div class="skill-bar-top"><span>Power BI / Tableau</span><span class="skill-bar-pct">72%</span></div>
-          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:72%"></div></div>
-        </div>
+        <div class="skill-bar-item"><div class="skill-bar-top"><span>ERP / CRM Integration (D365)</span><span class="skill-bar-pct">82%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="width:82%"></div></div></div>
+        <div class="skill-bar-item"><div class="skill-bar-top"><span>SQL (Data Queries & Validation)</span><span class="skill-bar-pct">75%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="width:75%"></div></div></div>
+        <div class="skill-bar-item"><div class="skill-bar-top"><span>REST API Testing (Postman)</span><span class="skill-bar-pct">78%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="width:78%"></div></div></div>
+        <div class="skill-bar-item"><div class="skill-bar-top"><span>Power BI / Tableau</span><span class="skill-bar-pct">72%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="width:72%"></div></div></div>
       </div>
     </div>
-
     <div class="skill-category">
       <div class="skill-cat-icon">💻</div>
       <div class="skill-cat-name">Development</div>
       <div class="skill-bars">
-        <div class="skill-bar-item">
-          <div class="skill-bar-top"><span>Python</span><span class="skill-bar-pct">80%</span></div>
-          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:80%"></div></div>
-        </div>
-        <div class="skill-bar-item">
-          <div class="skill-bar-top"><span>React / HTML / CSS</span><span class="skill-bar-pct">75%</span></div>
-          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:75%"></div></div>
-        </div>
-        <div class="skill-bar-item">
-          <div class="skill-bar-top"><span>Laravel / PHP</span><span class="skill-bar-pct">65%</span></div>
-          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:65%"></div></div>
-        </div>
-        <div class="skill-bar-item">
-          <div class="skill-bar-top"><span>TensorFlow / ML</span><span class="skill-bar-pct">70%</span></div>
-          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:70%"></div></div>
-        </div>
+        <div class="skill-bar-item"><div class="skill-bar-top"><span>Python</span><span class="skill-bar-pct">80%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="width:80%"></div></div></div>
+        <div class="skill-bar-item"><div class="skill-bar-top"><span>React / HTML / CSS</span><span class="skill-bar-pct">75%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="width:75%"></div></div></div>
+        <div class="skill-bar-item"><div class="skill-bar-top"><span>Laravel / PHP</span><span class="skill-bar-pct">65%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="width:65%"></div></div></div>
+        <div class="skill-bar-item"><div class="skill-bar-top"><span>TensorFlow / ML</span><span class="skill-bar-pct">70%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="width:70%"></div></div></div>
       </div>
     </div>
   </div>
@@ -2164,7 +1010,6 @@
   <div class="section-label">05 · Credentials</div>
   <h2 class="section-title">Certifications</h2>
   <p class="section-sub">Industry-recognised qualifications in project management and business analysis.</p>
-
   <div class="certs-grid reveal">
     <div class="cert-card">
       <div class="cert-badge">🏆</div>
@@ -2185,7 +1030,6 @@
       <div class="cert-desc">Professional-level certification in business analysis methodologies, requirements elicitation, stakeholder management, data analysis, and process improvement.</div>
     </div>
   </div>
-
   <div style="margin-top:3rem; background:var(--card); border:1px solid var(--border); border-radius:4px; padding:2rem; display:flex; align-items:center; gap:2rem; flex-wrap:wrap;" class="reveal">
     <div>
       <div style="font-family:'DM Mono',monospace; font-size:0.7rem; color:var(--gold); letter-spacing:0.15em; margin-bottom:0.5rem;">PROFESSIONAL DEVELOPMENT</div>
@@ -2201,49 +1045,62 @@
   <div class="section-label">06 · Get in Touch</div>
   <h2 class="section-title">Let's Work Together</h2>
   <p class="section-sub">Open to BA and PM opportunities — hybrid and remote globally. Reach out to discuss how I can contribute to your team.</p>
-
   <div class="contact-wrapper reveal">
     <div class="contact-info">
       <a href="mailto:shimark.ahmed.2002@gmail.com" class="contact-item">
         <div class="contact-icon">✉️</div>
-        <div>
-          <div class="contact-label">Email</div>
-          <div class="contact-value">shimark.ahmed.2002@gmail.com</div>
-        </div>
+        <div><div class="contact-label">Email</div><div class="contact-value">shimark.ahmed.2002@gmail.com</div></div>
       </a>
       <a href="tel:+94767455458" class="contact-item">
         <div class="contact-icon">📱</div>
-        <div>
-          <div class="contact-label">Phone</div>
-          <div class="contact-value">+94 76 7455 458</div>
-        </div>
+        <div><div class="contact-label">Phone</div><div class="contact-value">+94 76 7455 458</div></div>
       </a>
       <a href="https://linkedin.com/in/shimark-ahmed" target="_blank" class="contact-item">
         <div class="contact-icon">🔗</div>
-        <div>
-          <div class="contact-label">LinkedIn</div>
-          <div class="contact-value">linkedin.com/in/shimark-ahmed</div>
-        </div>
+        <div><div class="contact-label">LinkedIn</div><div class="contact-value">linkedin.com/in/shimark-ahmed</div></div>
       </a>
       <div class="contact-item" style="cursor:default;">
         <div class="contact-icon">📍</div>
-        <div>
-          <div class="contact-label">Location</div>
-          <div class="contact-value">Colombo, Sri Lanka · Hybrid & Remote</div>
-        </div>
+        <div><div class="contact-label">Location</div><div class="contact-value">Colombo, Sri Lanka · Hybrid & Remote</div></div>
       </div>
-
       <div>
         <div style="font-family:'DM Mono',monospace; font-size:0.65rem; color:var(--gold); letter-spacing:0.15em; text-transform:uppercase; margin-bottom:0.75rem;">Download CV</div>
         <div class="cv-contact-btns">
-          <button class="cv-btn" onclick="downloadCV('ba')">
-            ⬇ Business Analyst
-            <span class="cv-btn-sub">BA-focused resume</span>
-          </button>
-          <button class="cv-btn" onclick="downloadCV('pm')">
-            ⬇ Project Manager
-            <span class="cv-btn-sub">PM-focused resume</span>
-          </button>
+          <button class="cv-btn" onclick="downloadCV('ba')">⬇ Business Analyst<span class="cv-btn-sub">BA-focused resume</span></button>
+          <button class="cv-btn" onclick="downloadCV('pm')">⬇ Project Manager<span class="cv-btn-sub">PM-focused resume</span></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bonus: quick availability card on the right -->
+    <div style="display:flex;flex-direction:column;gap:1.5rem;">
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:4px;padding:2rem;position:relative;overflow:hidden;">
+        <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),transparent);"></div>
+        <div style="font-family:'DM Mono',monospace;font-size:0.65rem;color:var(--gold);letter-spacing:0.2em;margin-bottom:1rem;">OPEN TO OPPORTUNITIES</div>
+        <p style="color:var(--muted);font-size:0.88rem;line-height:1.8;margin-bottom:1.25rem;">I'm actively looking for <strong style="color:var(--white);">Business Analyst</strong> and <strong style="color:var(--white);">IT Project Manager</strong> roles where I can bring structured thinking, clear documentation, and cross-functional leadership to your team.</p>
+        <div style="display:flex;flex-direction:column;gap:0.6rem;">
+          <div style="display:flex;align-items:center;gap:0.75rem;font-size:0.83rem;color:var(--text);"><span style="color:var(--gold);">✓</span> Available immediately</div>
+          <div style="display:flex;align-items:center;gap:0.75rem;font-size:0.83rem;color:var(--text);"><span style="color:var(--gold);">✓</span> Hybrid or fully remote</div>
+          <div style="display:flex;align-items:center;gap:0.75rem;font-size:0.83rem;color:var(--text);"><span style="color:var(--gold);">✓</span> Fintech, GovTech, PropTech or general enterprise</div>
+          <div style="display:flex;align-items:center;gap:0.75rem;font-size:0.83rem;color:var(--text);"><span style="color:var(--gold);">✓</span> PMP certified · BSc Computer Science</div>
+        </div>
+      </div>
+
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:4px;padding:2rem;">
+        <div style="font-family:'DM Mono',monospace;font-size:0.65rem;color:var(--gold);letter-spacing:0.2em;margin-bottom:1rem;">WHAT I BRING</div>
+        <div style="display:flex;flex-direction:column;gap:0.75rem;">
+          <div style="padding:0.75rem;background:rgba(201,168,76,0.05);border:1px solid var(--border);border-radius:3px;">
+            <div style="font-size:0.78rem;font-weight:600;color:var(--white);margin-bottom:0.2rem;">Zero post-release critical incidents</div>
+            <div style="font-size:0.75rem;color:var(--muted);">Across all projects at Arimac & Optimo Gov</div>
+          </div>
+          <div style="padding:0.75rem;background:rgba(201,168,76,0.05);border:1px solid var(--border);border-radius:3px;">
+            <div style="font-size:0.78rem;font-weight:600;color:var(--white);margin-bottom:0.2rem;">100% on-time milestone delivery</div>
+            <div style="font-size:0.75rem;color:var(--muted);">Wyndham City Council municipal platform</div>
+          </div>
+          <div style="padding:0.75rem;background:rgba(201,168,76,0.05);border:1px solid var(--border);border-radius:3px;">
+            <div style="font-size:0.78rem;font-weight:600;color:var(--white);margin-bottom:0.2rem;">End-to-end BA ownership</div>
+            <div style="font-size:0.75rem;color:var(--muted);">BRDs · SRS · BPMN · UAT · RAID — full lifecycle</div>
+          </div>
         </div>
       </div>
     </div>
@@ -2268,71 +1125,77 @@
   <div class="modal">
     <div class="modal-header">
       <div>
-        <div style="font-family:'DM Mono',monospace; font-size:0.65rem; color:var(--gold); letter-spacing:0.15em; margin-bottom:0.4rem;">CASE STUDY · FINTECH · ARIMAC</div>
-        <div style="font-family:'Playfair Display',serif; font-size:1.6rem; color:var(--white); font-weight:700;">Peoples Pay – Digital Wallet Platform</div>
+        <div style="font-family:'DM Mono',monospace;font-size:0.65rem;color:var(--gold);letter-spacing:0.15em;margin-bottom:0.4rem;">CASE STUDY · FINTECH · ARIMAC</div>
+        <div style="font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--white);font-weight:700;">Peoples Pay – Digital Wallet Platform</div>
       </div>
       <button class="modal-close" onclick="closeModal('peoples-pay')">✕</button>
     </div>
     <div class="modal-body">
       <div class="modal-section">
         <div class="modal-section-title">Project Overview</div>
-        <p style="color:var(--muted); font-size:0.9rem; line-height:1.8;">Large-scale digital wallet platform serving enterprise clients across multiple markets. My role as BA involved end-to-end requirements engineering, stakeholder coordination across banking operations and compliance teams, and system validation through UAT to successful deployment. ERP integration with Microsoft Dynamics 365.</p>
+        <p style="color:var(--muted);font-size:0.9rem;line-height:1.8;">Large-scale digital wallet platform serving enterprise clients across multiple markets. My role as BA involved end-to-end requirements engineering, stakeholder coordination across banking operations and compliance teams, and system validation through UAT to successful deployment. ERP integration with Microsoft Dynamics 365.</p>
       </div>
       <div class="modal-section">
         <div class="modal-section-title">BRD Summary — Key Requirements</div>
-        <table class="story-table">
-          <thead><tr><th>ID</th><th>Category</th><th>Requirement</th><th>Priority</th></tr></thead>
-          <tbody>
-            <tr><td>BR-001</td><td>Authentication</td><td>System shall enforce multi-factor authentication for all wallet transactions above £500</td><td><span class="priority-badge p-high">High</span></td></tr>
-            <tr><td>BR-002</td><td>KYC</td><td>System shall integrate with third-party KYC provider to validate user identity within 24 hours of registration</td><td><span class="priority-badge p-high">High</span></td></tr>
-            <tr><td>BR-003</td><td>Compliance</td><td>All transaction records shall be retained for a minimum of 7 years in line with FCA regulations</td><td><span class="priority-badge p-high">High</span></td></tr>
-            <tr><td>BR-004</td><td>Payments</td><td>System shall support peer-to-peer transfers, bank top-up, and merchant payment flows</td><td><span class="priority-badge p-high">High</span></td></tr>
-            <tr><td>BR-005</td><td>Notifications</td><td>Users shall receive real-time push and email notifications for all account transactions</td><td><span class="priority-badge p-med">Medium</span></td></tr>
-            <tr><td>BR-006</td><td>Reporting</td><td>Admin dashboard shall provide exportable transaction reports filterable by date, user, and status</td><td><span class="priority-badge p-med">Medium</span></td></tr>
-            <tr><td>BR-007</td><td>Performance</td><td>Payment processing API shall respond within 2 seconds for 95th percentile of requests</td><td><span class="priority-badge p-med">Medium</span></td></tr>
-            <tr><td>BR-008</td><td>Accessibility</td><td>Web interface shall conform to WCAG 2.1 AA standards</td><td><span class="priority-badge p-low">Low</span></td></tr>
-          </tbody>
-        </table>
+        <div style="overflow-x:auto;">
+          <table class="story-table">
+            <thead><tr><th>ID</th><th>Category</th><th>Requirement</th><th>Priority</th></tr></thead>
+            <tbody>
+              <tr><td>BR-001</td><td>Authentication</td><td>System shall enforce multi-factor authentication for all wallet transactions above £500</td><td><span class="priority-badge p-high">High</span></td></tr>
+              <tr><td>BR-002</td><td>KYC</td><td>System shall integrate with third-party KYC provider to validate user identity within 24 hours of registration</td><td><span class="priority-badge p-high">High</span></td></tr>
+              <tr><td>BR-003</td><td>Compliance</td><td>All transaction records shall be retained for a minimum of 7 years in line with FCA regulations</td><td><span class="priority-badge p-high">High</span></td></tr>
+              <tr><td>BR-004</td><td>Payments</td><td>System shall support peer-to-peer transfers, bank top-up, and merchant payment flows</td><td><span class="priority-badge p-high">High</span></td></tr>
+              <tr><td>BR-005</td><td>Notifications</td><td>Users shall receive real-time push and email notifications for all account transactions</td><td><span class="priority-badge p-med">Medium</span></td></tr>
+              <tr><td>BR-006</td><td>Reporting</td><td>Admin dashboard shall provide exportable transaction reports filterable by date, user, and status</td><td><span class="priority-badge p-med">Medium</span></td></tr>
+              <tr><td>BR-007</td><td>Performance</td><td>Payment processing API shall respond within 2 seconds for 95th percentile of requests</td><td><span class="priority-badge p-med">Medium</span></td></tr>
+              <tr><td>BR-008</td><td>Accessibility</td><td>Web interface shall conform to WCAG 2.1 AA standards</td><td><span class="priority-badge p-low">Low</span></td></tr>
+            </tbody>
+          </table>
+        </div>
       </div>
       <div class="modal-section">
         <div class="modal-section-title">Agile User Stories — Digital Wallet</div>
-        <table class="story-table">
-          <thead><tr><th>Story ID</th><th>As a…</th><th>I want to…</th><th>So that…</th><th>Priority</th></tr></thead>
-          <tbody>
-            <tr><td>US-001</td><td><strong>Registered User</strong></td><td>link my bank account to my wallet</td><td>I can top up my wallet balance directly from my bank</td><td><span class="priority-badge p-high">High</span></td></tr>
-            <tr><td>US-002</td><td><strong>Wallet User</strong></td><td>send money to another wallet holder using their phone number</td><td>I can make peer-to-peer payments quickly without needing bank details</td><td><span class="priority-badge p-high">High</span></td></tr>
-            <tr><td>US-003</td><td><strong>Compliance Officer</strong></td><td>view a real-time dashboard of flagged transactions</td><td>I can investigate and resolve potential fraud cases promptly</td><td><span class="priority-badge p-high">High</span></td></tr>
-            <tr><td>US-004</td><td><strong>New User</strong></td><td>complete KYC verification via document upload within the app</td><td>my account is activated without needing to visit a branch</td><td><span class="priority-badge p-high">High</span></td></tr>
-            <tr><td>US-005</td><td><strong>Business Client</strong></td><td>generate a monthly transaction summary report</td><td>I can reconcile my business accounts accurately</td><td><span class="priority-badge p-med">Medium</span></td></tr>
-            <tr><td>US-006</td><td><strong>End User</strong></td><td>receive instant push notifications for every transaction</td><td>I can monitor my account activity in real time</td><td><span class="priority-badge p-med">Medium</span></td></tr>
-          </tbody>
-        </table>
+        <div style="overflow-x:auto;">
+          <table class="story-table">
+            <thead><tr><th>Story ID</th><th>As a…</th><th>I want to…</th><th>So that…</th><th>Priority</th></tr></thead>
+            <tbody>
+              <tr><td>US-001</td><td><strong>Registered User</strong></td><td>link my bank account to my wallet</td><td>I can top up my wallet balance directly from my bank</td><td><span class="priority-badge p-high">High</span></td></tr>
+              <tr><td>US-002</td><td><strong>Wallet User</strong></td><td>send money to another wallet holder using their phone number</td><td>I can make peer-to-peer payments quickly without needing bank details</td><td><span class="priority-badge p-high">High</span></td></tr>
+              <tr><td>US-003</td><td><strong>Compliance Officer</strong></td><td>view a real-time dashboard of flagged transactions</td><td>I can investigate and resolve potential fraud cases promptly</td><td><span class="priority-badge p-high">High</span></td></tr>
+              <tr><td>US-004</td><td><strong>New User</strong></td><td>complete KYC verification via document upload within the app</td><td>my account is activated without needing to visit a branch</td><td><span class="priority-badge p-high">High</span></td></tr>
+              <tr><td>US-005</td><td><strong>Business Client</strong></td><td>generate a monthly transaction summary report</td><td>I can reconcile my business accounts accurately</td><td><span class="priority-badge p-med">Medium</span></td></tr>
+              <tr><td>US-006</td><td><strong>End User</strong></td><td>receive instant push notifications for every transaction</td><td>I can monitor my account activity in real time</td><td><span class="priority-badge p-med">Medium</span></td></tr>
+            </tbody>
+          </table>
+        </div>
       </div>
       <div class="modal-section">
         <div class="modal-section-title">BPMN Process — Digital Wallet Payment Flow</div>
         <div class="diagram-area">
-          <div class="bpmn-flow">
-            <div class="bpmn-node"><div class="bpmn-shape bpmn-circle" style="font-size:0.52rem;">START</div><div class="bpmn-label">Initiate</div></div>
-            <div class="bpmn-arrow"></div>
-            <div class="bpmn-node"><div class="bpmn-shape bpmn-rect">Auth & Session Validate</div><div class="bpmn-label">Security</div></div>
-            <div class="bpmn-arrow"></div>
-            <div class="bpmn-node"><div class="bpmn-diamond-wrap"><div class="bpmn-diamond"></div><div class="bpmn-diamond-label">Auth OK?</div></div></div>
-            <div class="bpmn-arrow"></div>
-            <div class="bpmn-node"><div class="bpmn-shape bpmn-rect">KYC Status Check</div><div class="bpmn-label">Compliance</div></div>
-            <div class="bpmn-arrow"></div>
-            <div class="bpmn-node"><div class="bpmn-shape bpmn-rect highlight">Enter Amount & Recipient</div><div class="bpmn-label">User Input</div></div>
-            <div class="bpmn-arrow"></div>
-            <div class="bpmn-node"><div class="bpmn-shape bpmn-rect">Balance Check</div><div class="bpmn-label">Validation</div></div>
-            <div class="bpmn-arrow"></div>
-            <div class="bpmn-node"><div class="bpmn-shape bpmn-rect">Fraud Engine Scan</div><div class="bpmn-label">Risk</div></div>
-            <div class="bpmn-arrow"></div>
-            <div class="bpmn-node"><div class="bpmn-diamond-wrap"><div class="bpmn-diamond"></div><div class="bpmn-diamond-label">Approved?</div></div></div>
-            <div class="bpmn-arrow"></div>
-            <div class="bpmn-node"><div class="bpmn-shape bpmn-rect highlight">Process & Settle</div><div class="bpmn-label">Execution</div></div>
-            <div class="bpmn-arrow"></div>
-            <div class="bpmn-node"><div class="bpmn-shape bpmn-rect">Send Notification</div><div class="bpmn-label">Confirm</div></div>
-            <div class="bpmn-arrow"></div>
-            <div class="bpmn-node"><div class="bpmn-shape bpmn-circle end" style="font-size:0.52rem;">END</div><div class="bpmn-label">Complete</div></div>
+          <div class="bpmn-scroll">
+            <div class="bpmn-flow">
+              <div class="bpmn-node"><div class="bpmn-shape bpmn-circle" style="font-size:0.52rem;">START</div><div class="bpmn-label">Initiate</div></div>
+              <div class="bpmn-arrow"></div>
+              <div class="bpmn-node"><div class="bpmn-shape bpmn-rect">Auth & Session Validate</div><div class="bpmn-label">Security</div></div>
+              <div class="bpmn-arrow"></div>
+              <div class="bpmn-node"><div class="bpmn-diamond-wrap"><div class="bpmn-diamond"></div><div class="bpmn-diamond-label">Auth OK?</div></div></div>
+              <div class="bpmn-arrow"></div>
+              <div class="bpmn-node"><div class="bpmn-shape bpmn-rect">KYC Status Check</div><div class="bpmn-label">Compliance</div></div>
+              <div class="bpmn-arrow"></div>
+              <div class="bpmn-node"><div class="bpmn-shape bpmn-rect highlight">Enter Amount & Recipient</div><div class="bpmn-label">User Input</div></div>
+              <div class="bpmn-arrow"></div>
+              <div class="bpmn-node"><div class="bpmn-shape bpmn-rect">Balance Check</div><div class="bpmn-label">Validation</div></div>
+              <div class="bpmn-arrow"></div>
+              <div class="bpmn-node"><div class="bpmn-shape bpmn-rect">Fraud Engine Scan</div><div class="bpmn-label">Risk</div></div>
+              <div class="bpmn-arrow"></div>
+              <div class="bpmn-node"><div class="bpmn-diamond-wrap"><div class="bpmn-diamond"></div><div class="bpmn-diamond-label">Approved?</div></div></div>
+              <div class="bpmn-arrow"></div>
+              <div class="bpmn-node"><div class="bpmn-shape bpmn-rect highlight">Process & Settle</div><div class="bpmn-label">Execution</div></div>
+              <div class="bpmn-arrow"></div>
+              <div class="bpmn-node"><div class="bpmn-shape bpmn-rect">Send Notification</div><div class="bpmn-label">Confirm</div></div>
+              <div class="bpmn-arrow"></div>
+              <div class="bpmn-node"><div class="bpmn-shape bpmn-circle end" style="font-size:0.52rem;">END</div><div class="bpmn-label">Complete</div></div>
+            </div>
           </div>
         </div>
       </div>
@@ -2345,43 +1208,47 @@
   <div class="modal">
     <div class="modal-header">
       <div>
-        <div style="font-family:'DM Mono',monospace; font-size:0.65rem; color:var(--gold); letter-spacing:0.15em; margin-bottom:0.4rem;">CASE STUDY · GOVTECH · OPTIMO GOV</div>
-        <div style="font-family:'Playfair Display',serif; font-size:1.6rem; color:var(--white); font-weight:700;">Wyndham City Council – Municipal Digital Platform</div>
+        <div style="font-family:'DM Mono',monospace;font-size:0.65rem;color:var(--gold);letter-spacing:0.15em;margin-bottom:0.4rem;">CASE STUDY · GOVTECH · OPTIMO GOV</div>
+        <div style="font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--white);font-weight:700;">Wyndham City Council – Municipal Digital Platform</div>
       </div>
       <button class="modal-close" onclick="closeModal('wyndham')">✕</button>
     </div>
     <div class="modal-body">
       <div class="modal-section">
         <div class="modal-section-title">Project Overview</div>
-        <p style="color:var(--muted); font-size:0.9rem; line-height:1.8;">Implementation of a venue and facility management system across multiple Wyndham City Council departments. My role as Project Coordinator covered end-to-end Agile coordination — scope definition, stakeholder management, RAID log maintenance, UAT coordination, and 100% on-time milestone delivery.</p>
+        <p style="color:var(--muted);font-size:0.9rem;line-height:1.8;">Implementation of a venue and facility management system across multiple Wyndham City Council departments. My role as Project Coordinator covered end-to-end Agile coordination — scope definition, stakeholder management, RAID log maintenance, UAT coordination, and 100% on-time milestone delivery.</p>
       </div>
       <div class="modal-section">
         <div class="modal-section-title">RAID Log Sample</div>
-        <table class="raid-table">
-          <thead><tr><th>ID</th><th>Type</th><th>Description</th><th>Impact</th><th>Owner</th><th>Status</th></tr></thead>
-          <tbody>
-            <tr><td>R-001</td><td><span class="raid-type r-risk">Risk</span></td><td>Third-party API integration may cause delays to facility booking module delivery</td><td>High – could delay Sprint 4 by 1 week</td><td>Tech Lead</td><td style="color:#64c896;">Mitigated</td></tr>
-            <tr><td>A-001</td><td><span class="raid-type r-action">Action</span></td><td>BA to produce updated process maps for council approvals workflow by Sprint 3 start</td><td>Medium – blocks QA test script creation</td><td>S. Ahmed</td><td style="color:#64c896;">Closed</td></tr>
-            <tr><td>I-001</td><td><span class="raid-type r-issue">Issue</span></td><td>Booking conflict logic not matching specified business rules in UAT round 1</td><td>High – acceptance criterion not met</td><td>Dev Team</td><td style="color:#64c896;">Resolved</td></tr>
-            <tr><td>D-001</td><td><span class="raid-type r-dep">Dependency</span></td><td>Council sign-off on revised data retention policy required before reporting module can be configured</td><td>Medium – blocks reporting Sprint</td><td>Council IT Manager</td><td style="color:var(--gold);">In Progress</td></tr>
-            <tr><td>R-002</td><td><span class="raid-type r-risk">Risk</span></td><td>Key council stakeholder unavailable during UAT window — may reduce feedback quality</td><td>Medium – could delay sign-off</td><td>PM</td><td style="color:#64c896;">Mitigated</td></tr>
-            <tr><td>A-002</td><td><span class="raid-type r-action">Action</span></td><td>Prepare final handover documentation pack including runbooks and admin guide</td><td>Low</td><td>S. Ahmed</td><td style="color:var(--gold);">Open</td></tr>
-          </tbody>
-        </table>
+        <div style="overflow-x:auto;">
+          <table class="raid-table">
+            <thead><tr><th>ID</th><th>Type</th><th>Description</th><th>Impact</th><th>Owner</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td>R-001</td><td><span class="raid-type r-risk">Risk</span></td><td>Third-party API integration may cause delays to facility booking module delivery</td><td>High – could delay Sprint 4 by 1 week</td><td>Tech Lead</td><td style="color:#64c896;">Mitigated</td></tr>
+              <tr><td>A-001</td><td><span class="raid-type r-action">Action</span></td><td>BA to produce updated process maps for council approvals workflow by Sprint 3 start</td><td>Medium – blocks QA test script creation</td><td>S. Ahmed</td><td style="color:#64c896;">Closed</td></tr>
+              <tr><td>I-001</td><td><span class="raid-type r-issue">Issue</span></td><td>Booking conflict logic not matching specified business rules in UAT round 1</td><td>High – acceptance criterion not met</td><td>Dev Team</td><td style="color:#64c896;">Resolved</td></tr>
+              <tr><td>D-001</td><td><span class="raid-type r-dep">Dependency</span></td><td>Council sign-off on revised data retention policy required before reporting module can be configured</td><td>Medium – blocks reporting Sprint</td><td>Council IT Manager</td><td style="color:var(--gold);">In Progress</td></tr>
+              <tr><td>R-002</td><td><span class="raid-type r-risk">Risk</span></td><td>Key council stakeholder unavailable during UAT window — may reduce feedback quality</td><td>Medium – could delay sign-off</td><td>PM</td><td style="color:#64c896;">Mitigated</td></tr>
+              <tr><td>A-002</td><td><span class="raid-type r-action">Action</span></td><td>Prepare final handover documentation pack including runbooks and admin guide</td><td>Low</td><td>S. Ahmed</td><td style="color:var(--gold);">Open</td></tr>
+            </tbody>
+          </table>
+        </div>
       </div>
       <div class="modal-section">
         <div class="modal-section-title">UAT Test Plan — Facility Booking Module</div>
-        <table class="uat-table">
-          <thead><tr><th>Test ID</th><th>Feature</th><th>Test Scenario</th><th>Expected Result</th><th>Status</th></tr></thead>
-          <tbody>
-            <tr><td style="font-family:'DM Mono',monospace; font-size:0.7rem; color:var(--gold);">UAT-001</td><td>Booking Creation</td><td>Staff member books council chamber for 2-hour session with catering requirement</td><td>Booking confirmed; catering request logged; room marked unavailable in calendar</td><td><span class="status-pass">PASS</span></td></tr>
-            <tr><td style="font-family:'DM Mono',monospace; font-size:0.7rem; color:var(--gold);">UAT-002</td><td>Conflict Detection</td><td>Attempt to book already-reserved facility for overlapping time slot</td><td>System displays conflict warning; booking blocked; alternative slots suggested</td><td><span class="status-pass">PASS</span></td></tr>
-            <tr><td style="font-family:'DM Mono',monospace; font-size:0.7rem; color:var(--gold);">UAT-003</td><td>Approval Workflow</td><td>External organisation submits booking request requiring council manager approval</td><td>Request routed to approver; email notification sent; booking held as pending</td><td><span class="status-pass">PASS</span></td></tr>
-            <tr><td style="font-family:'DM Mono',monospace; font-size:0.7rem; color:var(--gold);">UAT-004</td><td>Cancellation</td><td>Authorised user cancels a confirmed booking with 48+ hours notice</td><td>Booking cancelled; facility released; cancellation email sent to all parties</td><td><span class="status-pass">PASS</span></td></tr>
-            <tr><td style="font-family:'DM Mono',monospace; font-size:0.7rem; color:var(--gold);">UAT-005</td><td>Reporting</td><td>Admin exports monthly facility utilisation report filtered by building</td><td>Report generates correctly in Excel format with accurate data</td><td><span class="status-pass">PASS</span></td></tr>
-            <tr><td style="font-family:'DM Mono',monospace; font-size:0.7rem; color:var(--gold);">UAT-006</td><td>Access Control</td><td>Standard user attempts to access admin configuration panel</td><td>Access denied; user redirected to dashboard with insufficient permissions message</td><td><span class="status-pass">PASS</span></td></tr>
-          </tbody>
-        </table>
+        <div style="overflow-x:auto;">
+          <table class="uat-table">
+            <thead><tr><th>Test ID</th><th>Feature</th><th>Test Scenario</th><th>Expected Result</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td style="font-family:'DM Mono',monospace;font-size:0.7rem;color:var(--gold);">UAT-001</td><td>Booking Creation</td><td>Staff member books council chamber for 2-hour session with catering requirement</td><td>Booking confirmed; catering request logged; room marked unavailable in calendar</td><td><span class="status-pass">PASS</span></td></tr>
+              <tr><td style="font-family:'DM Mono',monospace;font-size:0.7rem;color:var(--gold);">UAT-002</td><td>Conflict Detection</td><td>Attempt to book already-reserved facility for overlapping time slot</td><td>System displays conflict warning; booking blocked; alternative slots suggested</td><td><span class="status-pass">PASS</span></td></tr>
+              <tr><td style="font-family:'DM Mono',monospace;font-size:0.7rem;color:var(--gold);">UAT-003</td><td>Approval Workflow</td><td>External organisation submits booking request requiring council manager approval</td><td>Request routed to approver; email notification sent; booking held as pending</td><td><span class="status-pass">PASS</span></td></tr>
+              <tr><td style="font-family:'DM Mono',monospace;font-size:0.7rem;color:var(--gold);">UAT-004</td><td>Cancellation</td><td>Authorised user cancels a confirmed booking with 48+ hours notice</td><td>Booking cancelled; facility released; cancellation email sent to all parties</td><td><span class="status-pass">PASS</span></td></tr>
+              <tr><td style="font-family:'DM Mono',monospace;font-size:0.7rem;color:var(--gold);">UAT-005</td><td>Reporting</td><td>Admin exports monthly facility utilisation report filtered by building</td><td>Report generates correctly in Excel format with accurate data</td><td><span class="status-pass">PASS</span></td></tr>
+              <tr><td style="font-family:'DM Mono',monospace;font-size:0.7rem;color:var(--gold);">UAT-006</td><td>Access Control</td><td>Standard user attempts to access admin configuration panel</td><td>Access denied; user redirected to dashboard with insufficient permissions message</td><td><span class="status-pass">PASS</span></td></tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
@@ -2392,15 +1259,15 @@
   <div class="modal">
     <div class="modal-header">
       <div>
-        <div style="font-family:'DM Mono',monospace; font-size:0.65rem; color:var(--gold); letter-spacing:0.15em; margin-bottom:0.4rem;">CASE STUDY · PROPTECH · QNETWORK</div>
-        <div style="font-family:'Playfair Display',serif; font-size:1.6rem; color:var(--white); font-weight:700;">Breeze – Real Estate Application</div>
+        <div style="font-family:'DM Mono',monospace;font-size:0.65rem;color:var(--gold);letter-spacing:0.15em;margin-bottom:0.4rem;">CASE STUDY · PROPTECH · QNETWORK</div>
+        <div style="font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--white);font-weight:700;">Breeze – Real Estate Application</div>
       </div>
       <button class="modal-close" onclick="closeModal('breeze')">✕</button>
     </div>
     <div class="modal-body">
       <div class="modal-section">
         <div class="modal-section-title">Project Overview</div>
-        <p style="color:var(--muted); font-size:0.9rem; line-height:1.8;">Breeze is a real estate web application enabling users to search and discover property listings. As BA Intern at Qnetwork, I led requirements gathering through client interviews, developed the business model canvas, user flow diagrams, and system documentation to translate client needs into structured specifications.</p>
+        <p style="color:var(--muted);font-size:0.9rem;line-height:1.8;">Breeze is a real estate web application enabling users to search and discover property listings. As BA Intern at Qnetwork, I led requirements gathering through client interviews, developed the business model canvas, user flow diagrams, and system documentation to translate client needs into structured specifications.</p>
       </div>
       <div class="modal-section">
         <div class="modal-section-title">User Journey — Property Search & Discovery</div>
@@ -2432,17 +1299,19 @@
       </div>
       <div class="modal-section">
         <div class="modal-section-title">User Stories — Property Search Module</div>
-        <table class="story-table">
-          <thead><tr><th>Story ID</th><th>As a…</th><th>I want to…</th><th>So that…</th><th>Priority</th></tr></thead>
-          <tbody>
-            <tr><td>US-B-001</td><td><strong>Home Buyer</strong></td><td>search properties by location, price range, and number of bedrooms</td><td>I can quickly find listings that match my requirements</td><td><span class="priority-badge p-high">High</span></td></tr>
-            <tr><td>US-B-002</td><td><strong>Property Seeker</strong></td><td>view properties on an interactive map alongside the list view</td><td>I can understand the neighbourhood context before making enquiries</td><td><span class="priority-badge p-high">High</span></td></tr>
-            <tr><td>US-B-003</td><td><strong>Registered User</strong></td><td>save properties to a favourites list</td><td>I can compare shortlisted properties at a later time</td><td><span class="priority-badge p-med">Medium</span></td></tr>
-            <tr><td>US-B-004</td><td><strong>Property Seeker</strong></td><td>send an enquiry directly to the listing agent from the property detail page</td><td>I can express interest without leaving the platform</td><td><span class="priority-badge p-high">High</span></td></tr>
-            <tr><td>US-B-005</td><td><strong>Real Estate Agent</strong></td><td>manage my listings through a dashboard including photos, pricing, and availability</td><td>I can keep property information accurate and up to date for prospective buyers</td><td><span class="priority-badge p-high">High</span></td></tr>
-            <tr><td>US-B-006</td><td><strong>New Visitor</strong></td><td>browse listings without creating an account</td><td>I can evaluate the platform before committing to registration</td><td><span class="priority-badge p-med">Medium</span></td></tr>
-          </tbody>
-        </table>
+        <div style="overflow-x:auto;">
+          <table class="story-table">
+            <thead><tr><th>Story ID</th><th>As a…</th><th>I want to…</th><th>So that…</th><th>Priority</th></tr></thead>
+            <tbody>
+              <tr><td>US-B-001</td><td><strong>Home Buyer</strong></td><td>search properties by location, price range, and number of bedrooms</td><td>I can quickly find listings that match my requirements</td><td><span class="priority-badge p-high">High</span></td></tr>
+              <tr><td>US-B-002</td><td><strong>Property Seeker</strong></td><td>view properties on an interactive map alongside the list view</td><td>I can understand the neighbourhood context before making enquiries</td><td><span class="priority-badge p-high">High</span></td></tr>
+              <tr><td>US-B-003</td><td><strong>Registered User</strong></td><td>save properties to a favourites list</td><td>I can compare shortlisted properties at a later time</td><td><span class="priority-badge p-med">Medium</span></td></tr>
+              <tr><td>US-B-004</td><td><strong>Property Seeker</strong></td><td>send an enquiry directly to the listing agent from the property detail page</td><td>I can express interest without leaving the platform</td><td><span class="priority-badge p-high">High</span></td></tr>
+              <tr><td>US-B-005</td><td><strong>Real Estate Agent</strong></td><td>manage my listings through a dashboard including photos, pricing, and availability</td><td>I can keep property information accurate and up to date for prospective buyers</td><td><span class="priority-badge p-high">High</span></td></tr>
+              <tr><td>US-B-006</td><td><strong>New Visitor</strong></td><td>browse listings without creating an account</td><td>I can evaluate the platform before committing to registration</td><td><span class="priority-badge p-med">Medium</span></td></tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
@@ -2453,20 +1322,20 @@
   <div class="modal">
     <div class="modal-header">
       <div>
-        <div style="font-family:'DM Mono',monospace; font-size:0.65rem; color:var(--gold); letter-spacing:0.15em; margin-bottom:0.4rem;">CASE STUDY · AI · COMPUTER VISION · FINAL YEAR PROJECT</div>
-        <div style="font-family:'Playfair Display',serif; font-size:1.6rem; color:var(--white); font-weight:700;">SwingRight – Cricket Shot Analysis System</div>
+        <div style="font-family:'DM Mono',monospace;font-size:0.65rem;color:var(--gold);letter-spacing:0.15em;margin-bottom:0.4rem;">CASE STUDY · AI · COMPUTER VISION · FINAL YEAR PROJECT</div>
+        <div style="font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--white);font-weight:700;">SwingRight – Cricket Shot Analysis System</div>
       </div>
       <button class="modal-close" onclick="closeModal('swingright')">✕</button>
     </div>
     <div class="modal-body">
       <div class="modal-section">
         <div class="modal-section-title">Project Overview</div>
-        <p style="color:var(--muted); font-size:0.9rem; line-height:1.8;">SwingRight is an AI-powered cricket shot analysis web application developed as my Final Year Project. As sole developer and project lead, I managed the full project lifecycle — from requirements definition and UX wireframing through to model training and full-stack deployment.</p>
+        <p style="color:var(--muted);font-size:0.9rem;line-height:1.8;">SwingRight is an AI-powered cricket shot analysis web application developed as my Final Year Project. As sole developer and project lead, I managed the full project lifecycle — from requirements definition and UX wireframing through to model training and full-stack deployment.</p>
       </div>
       <div class="modal-section">
         <div class="modal-section-title">System Architecture</div>
         <div class="diagram-area">
-          <svg viewBox="0 0 740 220" xmlns="http://www.w3.org/2000/svg" style="width:100%; font-family:'DM Mono',monospace;">
+          <svg viewBox="0 0 740 220" xmlns="http://www.w3.org/2000/svg" style="width:100%;font-family:'DM Mono',monospace;">
             <rect x="10" y="80" width="120" height="60" rx="4" fill="#161616" stroke="#2a2a2a" stroke-width="1.5"/>
             <text x="70" y="106" text-anchor="middle" fill="#c9a84c" font-size="8" letter-spacing="1">FRONTEND</text>
             <text x="70" y="120" text-anchor="middle" fill="#d0d0c8" font-size="9">React App</text>
@@ -2509,37 +1378,46 @@
       </div>
       <div class="modal-section">
         <div class="modal-section-title">Functional Requirements</div>
-        <table class="story-table">
-          <thead><tr><th>ID</th><th>Requirement</th><th>Priority</th></tr></thead>
-          <tbody>
-            <tr><td>FR-001</td><td>System shall accept user-uploaded video files in MP4 and MOV format up to 100MB</td><td><span class="priority-badge p-high">High</span></td></tr>
-            <tr><td>FR-002</td><td>System shall extract individual frames from uploaded video using OpenCV at configurable FPS</td><td><span class="priority-badge p-high">High</span></td></tr>
-            <tr><td>FR-003</td><td>System shall detect and map 33 body pose landmarks per frame using MediaPipe Pose</td><td><span class="priority-badge p-high">High</span></td></tr>
-            <tr><td>FR-004</td><td>System shall classify the detected batting shot into one of 6 standard cricket shot types</td><td><span class="priority-badge p-high">High</span></td></tr>
-            <tr><td>FR-005</td><td>System shall generate an accuracy score (0–100%) comparing pose against reference dataset</td><td><span class="priority-badge p-high">High</span></td></tr>
-            <tr><td>FR-006</td><td>System shall provide natural language corrective feedback based on identified technique deviations</td><td><span class="priority-badge p-med">Medium</span></td></tr>
-            <tr><td>FR-007</td><td>System shall display an annotated video overlay highlighting key joint positions and angles</td><td><span class="priority-badge p-med">Medium</span></td></tr>
-            <tr><td>FR-008</td><td>System shall store session history for registered users to track technique progression over time</td><td><span class="priority-badge p-low">Low</span></td></tr>
-          </tbody>
-        </table>
+        <div style="overflow-x:auto;">
+          <table class="story-table">
+            <thead><tr><th>ID</th><th>Requirement</th><th>Priority</th></tr></thead>
+            <tbody>
+              <tr><td>FR-001</td><td>System shall accept user-uploaded video files in MP4 and MOV format up to 100MB</td><td><span class="priority-badge p-high">High</span></td></tr>
+              <tr><td>FR-002</td><td>System shall extract individual frames from uploaded video using OpenCV at configurable FPS</td><td><span class="priority-badge p-high">High</span></td></tr>
+              <tr><td>FR-003</td><td>System shall detect and map 33 body pose landmarks per frame using MediaPipe Pose</td><td><span class="priority-badge p-high">High</span></td></tr>
+              <tr><td>FR-004</td><td>System shall classify the detected batting shot into one of 6 standard cricket shot types</td><td><span class="priority-badge p-high">High</span></td></tr>
+              <tr><td>FR-005</td><td>System shall generate an accuracy score (0–100%) comparing pose against reference dataset</td><td><span class="priority-badge p-high">High</span></td></tr>
+              <tr><td>FR-006</td><td>System shall provide natural language corrective feedback based on identified technique deviations</td><td><span class="priority-badge p-med">Medium</span></td></tr>
+              <tr><td>FR-007</td><td>System shall display an annotated video overlay highlighting key joint positions and angles</td><td><span class="priority-badge p-med">Medium</span></td></tr>
+              <tr><td>FR-008</td><td>System shall store session history for registered users to track technique progression over time</td><td><span class="priority-badge p-low">Low</span></td></tr>
+            </tbody>
+          </table>
+        </div>
       </div>
       <div class="modal-section">
         <div class="modal-section-title">User Stories</div>
-        <table class="story-table">
-          <thead><tr><th>Story ID</th><th>As a…</th><th>I want to…</th><th>So that…</th><th>Priority</th></tr></thead>
-          <tbody>
-            <tr><td>US-SR-001</td><td><strong>Cricketer</strong></td><td>upload a video of my batting shot</td><td>the system can analyse my technique automatically</td><td><span class="priority-badge p-high">High</span></td></tr>
-            <tr><td>US-SR-002</td><td><strong>Player</strong></td><td>receive a percentage accuracy score for my shot</td><td>I can objectively measure my technique against correct form</td><td><span class="priority-badge p-high">High</span></td></tr>
-            <tr><td>US-SR-003</td><td><strong>Batsman</strong></td><td>view which specific joint positions are incorrect</td><td>I know exactly what to correct in my next practice session</td><td><span class="priority-badge p-high">High</span></td></tr>
-            <tr><td>US-SR-004</td><td><strong>Coach</strong></td><td>share analysis results with my player via a link</td><td>I can provide remote feedback without being physically present</td><td><span class="priority-badge p-med">Medium</span></td></tr>
-          </tbody>
-        </table>
+        <div style="overflow-x:auto;">
+          <table class="story-table">
+            <thead><tr><th>Story ID</th><th>As a…</th><th>I want to…</th><th>So that…</th><th>Priority</th></tr></thead>
+            <tbody>
+              <tr><td>US-SR-001</td><td><strong>Cricketer</strong></td><td>upload a video of my batting shot</td><td>the system can analyse my technique automatically</td><td><span class="priority-badge p-high">High</span></td></tr>
+              <tr><td>US-SR-002</td><td><strong>Player</strong></td><td>receive a percentage accuracy score for my shot</td><td>I can objectively measure my technique against correct form</td><td><span class="priority-badge p-high">High</span></td></tr>
+              <tr><td>US-SR-003</td><td><strong>Batsman</strong></td><td>view which specific joint positions are incorrect</td><td>I know exactly what to correct in my next practice session</td><td><span class="priority-badge p-high">High</span></td></tr>
+              <tr><td>US-SR-004</td><td><strong>Coach</strong></td><td>share analysis results with my player via a link</td><td>I can provide remote feedback without being physically present</td><td><span class="priority-badge p-med">Medium</span></td></tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
 </div>
 
 <script>
+  // Mobile menu
+  function toggleMobileMenu() {
+    document.getElementById('mobileMenu').classList.toggle('open');
+  }
+
   // Scroll reveal
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => {
@@ -2549,8 +1427,7 @@
         children.forEach((c, i) => { c.style.transitionDelay = `${i * 0.07}s`; });
       }
     });
-  }, { threshold: 0.08 });
-
+  }, { threshold: 0.06 });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
   // Modals
@@ -2558,33 +1435,21 @@
     document.getElementById('modal-' + id).classList.add('open');
     document.body.style.overflow = 'hidden';
   }
-
   function closeModal(id) {
     document.getElementById('modal-' + id).classList.remove('open');
     document.body.style.overflow = '';
   }
-
   document.querySelectorAll('.modal-overlay').forEach(overlay => {
     overlay.addEventListener('click', function(e) {
-      if (e.target === this) {
-        this.classList.remove('open');
-        document.body.style.overflow = '';
-      }
+      if (e.target === this) { this.classList.remove('open'); document.body.style.overflow = ''; }
     });
   });
 
-  // CV Download — two separate files
-function downloadCV(type) {
-  let file = "";
-
-  if (type === "ba") {
-    file = "Shimark_Resume_Business_analyst.pdf";
-  } else if (type === "pm") {
-    file = "Shimark_Resume_Project_manager.pdf";
+  // CV Download
+  function downloadCV(type) {
+    const file = type === 'ba' ? 'Shimark_Resume_Business_analyst.pdf' : 'Shimark_Resume_Project_manager.pdf';
+    window.open(file, '_blank');
   }
-
-  window.open(file, "_blank");
-}
 
   // Skill bar animation
   const skillObserver = new IntersectionObserver((entries) => {
@@ -2598,20 +1463,21 @@ function downloadCV(type) {
       }
     });
   }, { threshold: 0.3 });
-
   document.querySelectorAll('.skill-category').forEach(el => skillObserver.observe(el));
 
-  // Form submit
-  function handleFormSubmit(btn) {
-    btn.textContent = '✓ Message Sent!';
-    btn.style.background = '#3a3a3a';
-    btn.style.color = 'var(--muted)';
-    setTimeout(() => {
-      btn.textContent = 'Send Message →';
-      btn.style.background = '';
-      btn.style.color = '';
-    }, 3000);
+  // Fix hero padding on mobile
+  const heroSection = document.getElementById('hero');
+  function fixHeroPadding() {
+    if (window.innerWidth <= 900) {
+      heroSection.style.paddingLeft = '1.5rem';
+      heroSection.style.paddingRight = '1.5rem';
+    } else {
+      heroSection.style.paddingLeft = '4rem';
+      heroSection.style.paddingRight = '4rem';
+    }
   }
+  fixHeroPadding();
+  window.addEventListener('resize', fixHeroPadding);
 </script>
 </body>
 </html>
